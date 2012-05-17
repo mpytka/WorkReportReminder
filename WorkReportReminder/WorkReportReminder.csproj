@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\Controller\BaseController.cs" />
+    <Compile Include="UI\View\BaseView.cs" />
+    <Compile Include="UI\Controller\MainController.cs" />
+    <Compile Include="UI\View\MainView.cs" />
     <Compile Include="WRRForm.cs">
       <SubType>Form</SubType>
     </Compile>
