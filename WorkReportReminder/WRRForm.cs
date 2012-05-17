@@ -15,5 +15,39 @@ namespace WorkReportReminder
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NotificationIcon_DoubleClick(object sender, EventArgs e)
+        {
+            ShowMainForm();
+        }
+
+        /// <summary>
+        /// Initialises main form.
+        /// </summary>
+        private void InitialiseMainForm()
+        {
+            HideMainForm();
+        }
+
+        /// <summary>
+        /// Hides application to tray.
+        /// </summary>
+        private void HideMainForm()
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Shows application.
+        /// </summary>
+        private void ShowMainForm()
+        {
+            WindowState = FormWindowState.Normal;
+        }
     }
 }
