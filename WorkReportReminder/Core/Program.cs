@@ -15,7 +15,8 @@ namespace WorkReportReminder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WRRForm());
+            Application.Run(new Core.ApplicationCore());
         }
+
     }
 }

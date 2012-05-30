@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WRRForm));
-            this.NotificationIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            
             this.OKButton = new System.Windows.Forms.Button();
             this.PostponeButton = new System.Windows.Forms.Button();
             this.nameAndVersionLabel = new System.Windows.Forms.Label();
@@ -41,13 +41,7 @@
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.commentTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // NotificationIcon
-            // 
-            this.NotificationIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotificationIcon.Icon")));
-            this.NotificationIcon.Text = "WorkReportReminder";
-            this.NotificationIcon.Visible = true;
-            this.NotificationIcon.DoubleClick += new System.EventHandler(this.NotificationIcon_DoubleClick);
+            
             // 
             // OKButton
             // 
@@ -166,7 +160,6 @@
 
         #endregion
 
-        private System.Windows.Forms.NotifyIcon NotificationIcon;
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.Button PostponeButton;
         private System.Windows.Forms.Label nameAndVersionLabel;

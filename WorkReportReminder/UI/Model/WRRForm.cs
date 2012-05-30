@@ -16,31 +16,33 @@ namespace WorkReportReminder
         public WRRForm()
         {
             InitializeComponent();
-            InitialiseMainForm();
+            Initialise();
         }
 
         /// <summary>
         /// Initialises main form.
         /// </summary>
-        private void InitialiseMainForm()
+        private void Initialise()
         {
-            HideMainForm();
+            Hide();
             nameAndVersionLabel.Text = GenerateNameAndVersionInfo();
         }
 
         /// <summary>
-        /// Hides application to tray.
+        /// Hides form to tray.
         /// </summary>
-        private void HideMainForm()
+        public new void Hide()
         {
+            base.Hide();
             WindowState = FormWindowState.Minimized;
         }
 
         /// <summary>
         /// Shows application.
         /// </summary>
-        private void ShowMainForm()
+        public new virtual void Show()
         {
+            base.Show();
             WindowState = FormWindowState.Normal;
         }
 
@@ -65,18 +67,10 @@ namespace WorkReportReminder
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            HideMainForm();
+            Hide();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NotificationIcon_DoubleClick(object sender, EventArgs e)
-        {
-            ShowMainForm();
-        }
+
 
         #endregion
     }

@@ -46,19 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ApplicationCore.cs" />
     <Compile Include="UI\Controller\BaseController.cs" />
     <Compile Include="UI\View\BaseView.cs" />
     <Compile Include="UI\Controller\MainController.cs" />
     <Compile Include="UI\View\MainView.cs" />
-    <Compile Include="WRRForm.cs">
+    <Compile Include="UI\Model\WRRForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WRRForm.Designer.cs">
+    <Compile Include="UI\Model\WRRForm.Designer.cs">
       <DependentUpon>WRRForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="WRRForm.resx">
+    <EmbeddedResource Include="UI\Model\WRRForm.resx">
       <DependentUpon>WRRForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -69,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +81,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataManager\" />
+    <Folder Include="TimeManager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TaskBarIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

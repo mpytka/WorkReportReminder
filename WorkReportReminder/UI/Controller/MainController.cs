@@ -14,7 +14,11 @@ namespace WorkReportReminder
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MainController
+    public class MainController : BaseController
     {
+        public MainController(BaseView view)
+            : base(view)
+        {
+        }
     }
 }
