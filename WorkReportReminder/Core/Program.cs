@@ -17,6 +17,5 @@ namespace WorkReportReminder
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Core.ApplicationCore());
         }
-
     }
 }

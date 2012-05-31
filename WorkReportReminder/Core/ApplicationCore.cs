@@ -22,18 +22,26 @@ namespace WorkReportReminder.Core
     {
         private System.Windows.Forms.NotifyIcon NotificationIcon;
 
+        private MainController m_mainController;
+
         public ApplicationCore()
         {
             InitialiseComponents();
+            InternalInitialise();
         }
 
-        public void InitialiseComponents()
+        private void InitialiseComponents()
         {
             this.NotificationIcon = new System.Windows.Forms.NotifyIcon();
             this.NotificationIcon.Icon = ((System.Drawing.Icon)(Resources.TaskBarIcon));
             this.NotificationIcon.Text = "WorkReportReminder";
             this.NotificationIcon.Visible = true;
             this.NotificationIcon.DoubleClick += new System.EventHandler(this.NotificationIcon_DoubleClick);
+        }
+
+        private void InternalInitialise()
+        {
+            m_mainController = new MainController();
         }
 
         /// <summary>
@@ -48,12 +56,7 @@ namespace WorkReportReminder.Core
 
         private void ShowMainForm()
         {
-            if (MainForm == null)
-            {
-                MainForm = new WRRForm();
-            }
-
-            MainForm.Show();
+            m_mainController.ShowForm();
         }
 
     }

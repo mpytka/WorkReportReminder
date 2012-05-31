@@ -1,6 +1,6 @@
 ﻿namespace WorkReportReminder
 {
-    partial class WRRForm
+    partial class MainModel
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WRRForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainModel));
             
             this.OKButton = new System.Windows.Forms.Button();
             this.PostponeButton = new System.Windows.Forms.Button();

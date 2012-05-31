@@ -16,19 +16,8 @@ namespace WorkReportReminder
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BaseView
+    public abstract class BaseView
     {
-        private Form m_model;
-
-        public BaseView(Form model)
-        {
-            m_model = model;
-        }
-
-        public void ShowModel()
-        {
-            m_model.Show();
-        }
-
+        public abstract void ShowModel();
     }
 }

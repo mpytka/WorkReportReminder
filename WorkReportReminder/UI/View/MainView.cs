@@ -13,11 +13,30 @@ namespace WorkReportReminder
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MainView : BaseView
+    public class MainView
     {
-        public MainView(System.Windows.Forms.Form model)
-            : base(model)
+        private MainModel m_mainModel;
+
+        public MainView()
         {
+            m_mainModel = new MainModel();
         }
+
+        #region Properties
+
+        public string NameAndVersionInfo
+        {
+            get { return m_mainModel.NameAndVersionInfo; }
+            set { m_mainModel.NameAndVersionInfo = value; }
+        }
+
+
+        #endregion
+
+        public void  ShowModel()
+        {
+            m_mainModel.Show();
+        }
+
     }
 }

@@ -13,18 +13,8 @@ namespace WorkReportReminder
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class BaseController
+    public abstract class BaseController
     {
-        private BaseView m_view;
-
-        public BaseController(BaseView view)
-        {
-            m_view = view;
-        }
-
-        public void ShowModel()
-        {
-            m_view.ShowModel();
-        }
+        public abstract void ShowModel();
     }
 }

@@ -51,16 +51,16 @@
     <Compile Include="UI\View\BaseView.cs" />
     <Compile Include="UI\Controller\MainController.cs" />
     <Compile Include="UI\View\MainView.cs" />
-    <Compile Include="UI\Model\WRRForm.cs">
+    <Compile Include="UI\Model\MainModel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Model\WRRForm.Designer.cs">
-      <DependentUpon>WRRForm.cs</DependentUpon>
+      <DependentUpon>MainModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="UI\Model\WRRForm.resx">
-      <DependentUpon>WRRForm.cs</DependentUpon>
+      <DependentUpon>MainModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
