@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ApplicationCore.cs" />
+    <Compile Include="UI\UICore.Designer.cs" />
     <Compile Include="UI\Controller\BaseController.cs" />
+    <Compile Include="UI\UICore.cs" />
     <Compile Include="UI\View\BaseView.cs" />
     <Compile Include="UI\Controller\MainController.cs" />
     <Compile Include="UI\View\MainView.cs" />

@@ -37,6 +37,5 @@ namespace WorkReportReminder
         {
             m_mainModel.Show();
         }
-
     }
 }

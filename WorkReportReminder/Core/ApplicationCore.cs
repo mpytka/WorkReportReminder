@@ -4,14 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
-using WorkReportReminder.Properties;
-using WorkReportReminder;
+using WorkReportReminder.UI;
 
 namespace WorkReportReminder.Core
 {
@@ -20,44 +14,11 @@ namespace WorkReportReminder.Core
     /// </summary>
     public class ApplicationCore : ApplicationContext
     {
-        private System.Windows.Forms.NotifyIcon NotificationIcon;
-
-        private MainController m_mainController;
+        private UICore m_uiCore;
 
         public ApplicationCore()
         {
-            InitialiseComponents();
-            InternalInitialise();
+            m_uiCore = new UICore();
         }
-
-        private void InitialiseComponents()
-        {
-            this.NotificationIcon = new System.Windows.Forms.NotifyIcon();
-            this.NotificationIcon.Icon = ((System.Drawing.Icon)(Resources.TaskBarIcon));
-            this.NotificationIcon.Text = "WorkReportReminder";
-            this.NotificationIcon.Visible = true;
-            this.NotificationIcon.DoubleClick += new System.EventHandler(this.NotificationIcon_DoubleClick);
-        }
-
-        private void InternalInitialise()
-        {
-            m_mainController = new MainController();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NotificationIcon_DoubleClick(object sender, EventArgs e)
-        {
-            ShowMainForm();
-        }
-
-        private void ShowMainForm()
-        {
-            m_mainController.ShowForm();
-        }
-
     }
 }

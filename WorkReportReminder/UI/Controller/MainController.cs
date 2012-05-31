@@ -28,10 +28,6 @@ namespace WorkReportReminder
             m_mainView.NameAndVersionInfo = GenerateNameAndVersionInfo();
         }
 
-        /// <summary>
-        /// TODO: move to controller.
-        /// </summary>
-        /// <returns></returns>
         private string GenerateNameAndVersionInfo()
         {
             string name;

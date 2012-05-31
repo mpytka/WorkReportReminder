@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainModel));
-            
             this.OKButton = new System.Windows.Forms.Button();
             this.PostponeButton = new System.Windows.Forms.Button();
             this.nameAndVersionLabel = new System.Windows.Forms.Label();
@@ -41,7 +39,6 @@
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.commentTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            
             // 
             // OKButton
             // 
@@ -132,7 +129,7 @@
             this.commentTextBox.Size = new System.Drawing.Size(429, 64);
             this.commentTextBox.TabIndex = 8;
             // 
-            // WRRForm
+            // MainModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +146,7 @@
             this.Controls.Add(this.OKButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "WRRForm";
+            this.Name = "MainModel";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WorkReportReminder";
@@ -169,6 +166,7 @@
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.TextBox commentTextBox;
+
     }
 }
 
