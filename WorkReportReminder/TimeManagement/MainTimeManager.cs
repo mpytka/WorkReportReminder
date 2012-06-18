@@ -32,8 +32,8 @@ namespace WorkReportReminder.TimeManagement
         {
             _timer = new DispatcherTimer();
             //TODO: settings 
-            _normalTimerDelay = new TimeSpan(0,0,1,0);
-            _postponeTimerDelay = new TimeSpan(0,0,0,5);
+            _normalTimerDelay = new TimeSpan(0,0,0,10);
+            _postponeTimerDelay = new TimeSpan(0,0,0,1);
 
             _timer.Interval = _normalTimerDelay;
             _timer.Tick += OnTimerTick;

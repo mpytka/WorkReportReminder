@@ -43,7 +43,14 @@ namespace WorkReportReminder
             _view.Hide();
         }
 
-        public void SaveReport(string workItemId, string workItemTitle, string workItemComment)
+        /// <summary>
+        /// If validation pass fires SaveReport event, return true and hide view. Else return false.
+        /// </summary>
+        /// <param name="workItemId"></param>
+        /// <param name="workItemTitle"></param>
+        /// <param name="workItemComment"></param>
+        /// <returns></returns>
+        public bool SaveReport(string workItemId, string workItemTitle, string workItemComment)
         {
             if(ValidateWorkItemID(workItemId))
             {
@@ -54,10 +61,13 @@ namespace WorkReportReminder
                     {
                         temp(this, new SaveReportEventArgs(workItemId, workItemTitle, workItemComment));
                     }
+
+                    _view.Hide();
+                    return true;
                 }
             }
 
-            _view.Hide();
+            return false;
         }
 
         /// <summary>

@@ -51,14 +51,14 @@ namespace WorkReportReminder.UI
             }
         }
 
-        public void ShowMainForm()
-        {
-            _mainController.Show();
-        }
-
         private void NotificationIcon_DoubleClick(object sender, EventArgs e)
         {
             ShowMainForm();
+        }
+
+        public void ShowMainForm()
+        {
+            _mainController.Show();
         }
     }
 }

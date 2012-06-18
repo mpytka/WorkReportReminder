@@ -6,6 +6,7 @@
 
 using System;
 using System.Windows.Forms;
+using WorkReportReminder.Common;
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI;
 
@@ -16,8 +17,8 @@ namespace WorkReportReminder.Core
     /// </summary>
     public class ApplicationCore : ApplicationContext
     {
-        private UICore m_uiCore;
-        private ITimeManager m_timeManager;
+        private UICore _uiCore;
+        private ITimeManager _timeManager;
 
         public ApplicationCore()
         {
@@ -26,24 +27,30 @@ namespace WorkReportReminder.Core
 
         private void Initialise()
         {
-            m_uiCore = new UICore();
-            m_uiCore.PostponeReportReminder += OnReportPostponed;
+            _uiCore = new UICore();
+            _uiCore.PostponeReportReminder += OnPostponeReport;
+            _uiCore.SaveReport += OnSaveRepor;
 
-            m_timeManager = new MainTimeManager();
-            m_timeManager.InitialiseTimer();
-            m_timeManager.StartTimer();
-            m_timeManager.TimeElapsed += MainTimerElapsed;
+            _timeManager = new MainTimeManager();
+            _timeManager.InitialiseTimer();
+            _timeManager.StartTimer();
+            _timeManager.TimeElapsed += MainTimerElapsed;
 
         }
 
-        private void OnReportPostponed(object sender, EventArgs e)
+        private void OnSaveRepor(object sender, SaveReportEventArgs e)
         {
-            m_timeManager.PostponeTimer();
+            _timeManager.ResetTimer();
+        }
+
+        private void OnPostponeReport(object sender, EventArgs e)
+        {
+            _timeManager.PostponeTimer();
         }
 
         private void MainTimerElapsed(object sender, EventArgs eventArgs)
         {
-            m_uiCore.ShowMainForm();
+            _uiCore.ShowMainForm();
         }
     }
 }
