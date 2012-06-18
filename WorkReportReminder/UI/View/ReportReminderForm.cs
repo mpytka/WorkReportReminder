@@ -6,31 +6,27 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkReportReminder.UI;
 
 
 namespace WorkReportReminder
 {
-    public partial class MainModel : Form
+    public partial class ReportReminderForm : Form, IReportReminderView
     {
         private string m_nameAndVersionInfo = string.Empty;
-        #region Properties
 
-        public string NameAndVersionInfo
-        {
-            get
-            {
-                return m_nameAndVersionInfo;
-            }
-            set
-            {
-                m_nameAndVersionInfo = value;
-                nameAndVersionLabel.Text = m_nameAndVersionInfo;
-            }
-        }
+        #region Events
+
+        public event EventHandler OKButtonClicked;
+        public event EventHandler PostponeButtonClicked;
 
         #endregion
 
-        public MainModel()
+        #region Properties
+
+        #endregion
+
+        public ReportReminderForm()
         {
             InitializeComponent();
             Initialise();
@@ -42,13 +38,19 @@ namespace WorkReportReminder
         private void Initialise()
         {
             Hide();
-            nameAndVersionLabel.Text = NameAndVersionInfo;
+        }
+
+        #region IReportReminderView implementation
+
+        public string SetNameAndVersionInfo
+        {
+            set { nameAndVersionLabel.Text = value; }
         }
 
         /// <summary>
         /// Hides form to tray.
         /// </summary>
-        public void Hide()
+        public new void Hide()
         {
             base.Hide();
             WindowState = FormWindowState.Minimized;
@@ -57,13 +59,13 @@ namespace WorkReportReminder
         /// <summary>
         /// Shows application.
         /// </summary>
-        public void Show()
+        public new void Show()
         {
             base.Show();
             WindowState = FormWindowState.Normal;
         }
 
-
+        #endregion
 
         #region Mouse Actions
 

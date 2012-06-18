@@ -1,6 +1,6 @@
 ﻿namespace WorkReportReminder
 {
-    partial class MainModel
+    partial class ReportReminderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainModel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportReminderForm));
             this.OKButton = new System.Windows.Forms.Button();
             this.PostponeButton = new System.Windows.Forms.Button();
             this.nameAndVersionLabel = new System.Windows.Forms.Label();
@@ -129,7 +129,7 @@
             this.commentTextBox.Size = new System.Drawing.Size(429, 64);
             this.commentTextBox.TabIndex = 8;
             // 
-            // MainModel
+            // ReportReminderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,7 +146,7 @@
             this.Controls.Add(this.OKButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MainModel";
+            this.Name = "ReportReminderForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WorkReportReminder";

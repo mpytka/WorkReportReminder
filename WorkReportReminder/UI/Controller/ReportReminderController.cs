@@ -14,21 +14,30 @@ namespace WorkReportReminder
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class MainController
+    public class ReportReminderController
     {
-        private MainView m_mainView;
+        private ReportReminderForm m_view;
 
-        public MainController()
+        #region Events
+
+
+        #endregion
+
+        public ReportReminderController()
         {
-            m_mainView = new MainView();
+            m_view = new ReportReminderForm();
         }
 
         private void Initialise()
         {
-            m_mainView.NameAndVersionInfo = GenerateNameAndVersionInfo();
+            m_view.SetNameAndVersionInfo = NameAndVersionInfo();
         }
 
-        private string GenerateNameAndVersionInfo()
+        /// <summary>
+        /// Returns name and version information.
+        /// </summary>
+        /// <returns></returns>
+        private string NameAndVersionInfo()
         {
             string name;
             string version;
@@ -41,9 +50,12 @@ namespace WorkReportReminder
             return name + " " + version;
         }
 
-        public void ShowForm()
+        /// <summary>
+        /// Shows form.
+        /// </summary>
+        public void Show()
         {
-            m_mainView.ShowModel();
+            m_view.Show();
         }
     }
 }

@@ -47,22 +47,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ApplicationCore.cs" />
+    <Compile Include="UI\IReportReminderView.cs" />
     <Compile Include="UI\UICore.Designer.cs" />
     <Compile Include="UI\Controller\BaseController.cs" />
     <Compile Include="UI\UICore.cs" />
-    <Compile Include="UI\View\BaseView.cs" />
-    <Compile Include="UI\Controller\MainController.cs" />
-    <Compile Include="UI\View\MainView.cs" />
-    <Compile Include="UI\Model\MainModel.cs">
+    <Compile Include="UI\Controller\ReportReminderController.cs" />
+    <Compile Include="UI\View\ReportReminderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Model\WRRForm.Designer.cs">
-      <DependentUpon>MainModel.cs</DependentUpon>
+    <Compile Include="UI\View\ReportReminderForm.Designer.cs">
+      <DependentUpon>ReportReminderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UI\Model\WRRForm.resx">
-      <DependentUpon>MainModel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\View\ReportReminderForm.resx">
+      <DependentUpon>ReportReminderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

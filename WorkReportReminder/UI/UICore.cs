@@ -14,7 +14,7 @@ namespace WorkReportReminder.UI
     /// </summary>
     public partial class UICore
     {
-        private MainController m_mainController;
+        private ReportReminderController m_mainController;
 
         public UICore()
         {
@@ -24,12 +24,12 @@ namespace WorkReportReminder.UI
 
         private void InternalInitialise()
         {
-            m_mainController = new MainController();
+            m_mainController = new ReportReminderController();
         }
 
         private void ShowMainForm()
         {
-            m_mainController.ShowForm();
+            m_mainController.Show();
         }
 
         private void NotificationIcon_DoubleClick(object sender, EventArgs e)
