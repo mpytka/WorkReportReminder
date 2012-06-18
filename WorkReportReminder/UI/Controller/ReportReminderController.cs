@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using WorkReportReminder.Common;
+using WorkReportReminder.UI;
 
 namespace WorkReportReminder
 {
@@ -16,21 +18,85 @@ namespace WorkReportReminder
     /// </summary>
     public class ReportReminderController
     {
-        private ReportReminderForm m_view;
+        private IReportReminderView _view;
 
         #region Events
 
+        public event EventHandler PostponeReportReminder;
+        public event EventHandler<SaveReportEventArgs> SaveReportData;
 
         #endregion
 
         public ReportReminderController()
         {
-            m_view = new ReportReminderForm();
+            _view = new ReportReminderForm(this);
+        }
+
+        public void PostponeReport()
+        {
+            EventHandler temp = PostponeReportReminder;
+            if (temp != null)
+            {
+                temp(this, EventArgs.Empty);
+            }
+
+            _view.Hide();
+        }
+
+        public void SaveReport(string workItemId, string workItemTitle, string workItemComment)
+        {
+            if(ValidateWorkItemID(workItemId))
+            {
+                if(ValidateWorkItemTitle(workItemTitle))
+                {
+                    EventHandler<SaveReportEventArgs> temp = SaveReportData;
+                    if(temp != null)
+                    {
+                        temp(this, new SaveReportEventArgs(workItemId, workItemTitle, workItemComment));
+                    }
+                }
+            }
+
+            _view.Hide();
+        }
+
+        /// <summary>
+        /// Validates work item title.
+        /// </summary>
+        /// <param name="workItemTitle"></param>
+        /// <returns></returns>
+        private bool ValidateWorkItemTitle(string workItemTitle)
+        {
+            if(workItemTitle != string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Validates work item ID.
+        /// </summary>
+        /// <param name="workItemId"></param>
+        /// <returns></returns>
+        private bool ValidateWorkItemID(string workItemId)
+        {
+            if (workItemId != string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void Initialise()
         {
-            m_view.SetNameAndVersionInfo = NameAndVersionInfo();
+            _view.SetNameAndVersionInfo = NameAndVersionInfo();
         }
 
         /// <summary>
@@ -55,7 +121,9 @@ namespace WorkReportReminder
         /// </summary>
         public void Show()
         {
-            m_view.Show();
+            _view.Show();
         }
+
+
     }
 }

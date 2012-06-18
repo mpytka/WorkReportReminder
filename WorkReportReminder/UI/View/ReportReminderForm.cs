@@ -13,23 +13,18 @@ namespace WorkReportReminder
 {
     public partial class ReportReminderForm : Form, IReportReminderView
     {
-        private string m_nameAndVersionInfo = string.Empty;
-
-        #region Events
-
-        public event EventHandler OKButtonClicked;
-        public event EventHandler PostponeButtonClicked;
-
-        #endregion
+        private string _nameAndVersionInfo = string.Empty;
+        private ReportReminderController _controller;
 
         #region Properties
 
         #endregion
 
-        public ReportReminderForm()
+        public ReportReminderForm(ReportReminderController controller)
         {
             InitializeComponent();
             Initialise();
+            _controller = controller;
         }
 
         /// <summary>
@@ -56,6 +51,7 @@ namespace WorkReportReminder
             WindowState = FormWindowState.Minimized;
         }
 
+
         /// <summary>
         /// Shows application.
         /// </summary>
@@ -71,9 +67,14 @@ namespace WorkReportReminder
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            Hide();
+            _controller.SaveReport(idTextBox.Text, titleTextBox.Text, commentTextBox.Text);
         }
 
         #endregion
+
+        private void PostponeButton_Click(object sender, EventArgs e)
+        {
+            _controller.PostponeReport();
+        }
     }
 }

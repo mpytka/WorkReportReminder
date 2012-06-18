@@ -62,6 +62,7 @@
             this.PostponeButton.TabIndex = 1;
             this.PostponeButton.Text = "Postpone";
             this.PostponeButton.UseVisualStyleBackColor = false;
+            this.PostponeButton.Click += new System.EventHandler(this.PostponeButton_Click);
             // 
             // nameAndVersionLabel
             // 

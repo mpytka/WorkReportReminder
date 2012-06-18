@@ -6,6 +6,7 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using WorkReportReminder.Common;
 
 namespace WorkReportReminder.UI
 {
@@ -14,7 +15,10 @@ namespace WorkReportReminder.UI
     /// </summary>
     public partial class UICore
     {
-        private ReportReminderController m_mainController;
+        private ReportReminderController _mainController;
+
+        public event EventHandler PostponeReportReminder;
+        public event EventHandler<SaveReportEventArgs> SaveReport;
 
         public UICore()
         {
@@ -24,12 +28,32 @@ namespace WorkReportReminder.UI
 
         private void InternalInitialise()
         {
-            m_mainController = new ReportReminderController();
+            _mainController = new ReportReminderController();
+            _mainController.PostponeReportReminder += OnPostponeReport;
+            _mainController.SaveReportData += OnSaveReport;
         }
 
-        private void ShowMainForm()
+        private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
-            m_mainController.Show();
+            EventHandler<SaveReportEventArgs> temp = SaveReport;
+            if(temp != null)
+            {
+                temp(sender, e);
+            }
+        }
+
+        private void OnPostponeReport(object sender, EventArgs e)
+        {
+            EventHandler temp = PostponeReportReminder;
+            if(temp != null)
+            {
+                temp(sender, e);
+            }
+        }
+
+        public void ShowMainForm()
+        {
+            _mainController.Show();
         }
 
         private void NotificationIcon_DoubleClick(object sender, EventArgs e)
