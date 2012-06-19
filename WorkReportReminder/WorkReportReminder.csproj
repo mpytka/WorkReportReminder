@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\SaveReportEventArgs.cs" />
+    <Compile Include="Common\WorkItemDto.cs" />
     <Compile Include="Core\ApplicationCore.cs" />
+    <Compile Include="DataManagement\IDataManager.cs" />
     <Compile Include="TimeManagement\ITimeManager.cs" />
     <Compile Include="TimeManagement\MainTimeManager.cs" />
     <Compile Include="UI\IReportReminderView.cs" />
@@ -88,7 +90,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataManager\" />
     <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>

@@ -7,15 +7,11 @@ namespace WorkReportReminder.Common
 {
     public class SaveReportEventArgs : EventArgs
     {
-        public string WorkItemId { get; private set; }
-        public string WorkItemTitle { get; private set; }
-        public string WorkItemComment { get; private set; }
+        public WorkItemDto WorkItemData { get; private set; }
 
-        public SaveReportEventArgs(string workItemId, string workItemTitle, string workItemComment)
+        public SaveReportEventArgs(WorkItemDto wiData)
         {
-            WorkItemId = workItemId;
-            WorkItemTitle = workItemTitle;
-            WorkItemComment = workItemComment;
+            WorkItemData = wiData;
         }
     }
 }

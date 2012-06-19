@@ -30,6 +30,7 @@ namespace WorkReportReminder
         public ReportReminderController()
         {
             _view = new ReportReminderForm(this);
+            _view.SetNameAndVersionInfo = NameAndVersionInfo();
         }
 
         public void PostponeReport()
@@ -59,7 +60,7 @@ namespace WorkReportReminder
                     EventHandler<SaveReportEventArgs> temp = SaveReportData;
                     if(temp != null)
                     {
-                        temp(this, new SaveReportEventArgs(workItemId, workItemTitle, workItemComment));
+                        temp(this, new SaveReportEventArgs(new WorkItemDto(workItemId, workItemTitle, workItemComment)));
                     }
 
                     _view.Hide();

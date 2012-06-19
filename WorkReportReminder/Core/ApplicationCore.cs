@@ -13,7 +13,11 @@ using WorkReportReminder.UI;
 namespace WorkReportReminder.Core
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// TODO: 
+    /// ITimeManager - BeginShift/EndShift;
+    /// ISettingsManager;
+    /// IDataManager;
+    /// IWorkItemData as DTO instead of string parameters;
     /// </summary>
     public class ApplicationCore : ApplicationContext
     {
