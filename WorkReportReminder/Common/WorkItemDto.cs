@@ -7,15 +7,18 @@ namespace WorkReportReminder.Common
 {
     public class WorkItemDto
     {
-        public string WorkItemId { get; private set; }
-        public string WorkItemTitle { get; private set; }
-        public string WorkItemComment { get; private set; }
+        public int Id { get; private set; }
+        public string Title { get; private set; }
+        public string Comment { get; private set; }
 
-        public WorkItemDto(string workItemId, string workItemTitle, string workItemComment)
+        public DateTime Time { get; set; }
+
+        public WorkItemDto(int id, string title, string comment, DateTime time)
         {
-            WorkItemId = workItemId;
-            WorkItemTitle = workItemTitle;
-            WorkItemComment = workItemComment;
+            Id = id;
+            Title = title;
+            Comment = comment;
+            Time = time;
         }
     }
 }

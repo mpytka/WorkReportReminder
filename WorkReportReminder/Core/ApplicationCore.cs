@@ -5,8 +5,10 @@
 // -----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using WorkReportReminder.Common;
+using WorkReportReminder.DataManagement;
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI;
 
@@ -23,6 +25,7 @@ namespace WorkReportReminder.Core
     {
         private UICore _uiCore;
         private ITimeManager _timeManager;
+        private IDataManager _dataManager;
 
         public ApplicationCore()
         {
@@ -33,18 +36,23 @@ namespace WorkReportReminder.Core
         {
             _uiCore = new UICore();
             _uiCore.PostponeReportReminder += OnPostponeReport;
-            _uiCore.SaveReport += OnSaveRepor;
+            _uiCore.SaveReport += OnSaveReport;
 
             _timeManager = new MainTimeManager();
             _timeManager.InitialiseTimer();
             _timeManager.StartTimer();
             _timeManager.TimeElapsed += MainTimerElapsed;
 
+            _dataManager = new XmlDataManager();
         }
 
-        private void OnSaveRepor(object sender, SaveReportEventArgs e)
+        private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
             _timeManager.ResetTimer();
+            List<WorkItemDto> tempWiList = new List<WorkItemDto>();
+            tempWiList.Add(e.WorkItemData);
+
+            _dataManager.Write(tempWiList);
         }
 
         private void OnPostponeReport(object sender, EventArgs e)

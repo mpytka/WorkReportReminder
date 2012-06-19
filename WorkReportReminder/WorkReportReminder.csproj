@@ -51,6 +51,11 @@
     <Compile Include="Common\WorkItemDto.cs" />
     <Compile Include="Core\ApplicationCore.cs" />
     <Compile Include="DataManagement\IDataManager.cs" />
+    <Compile Include="DataManagement\IDataReader.cs" />
+    <Compile Include="DataManagement\IDataWriter.cs" />
+    <Compile Include="DataManagement\XmlData\XMLDataManager.cs" />
+    <Compile Include="DataManagement\XmlData\XmlDataReader.cs" />
+    <Compile Include="DataManagement\XmlData\XmlDataWriter.cs" />
     <Compile Include="TimeManagement\ITimeManager.cs" />
     <Compile Include="TimeManagement\MainTimeManager.cs" />
     <Compile Include="UI\IReportReminderView.cs" />

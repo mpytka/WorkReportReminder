@@ -60,7 +60,7 @@ namespace WorkReportReminder
                     EventHandler<SaveReportEventArgs> temp = SaveReportData;
                     if(temp != null)
                     {
-                        temp(this, new SaveReportEventArgs(new WorkItemDto(workItemId, workItemTitle, workItemComment)));
+                        temp(this, new SaveReportEventArgs(new WorkItemDto(int.Parse(workItemId), workItemTitle, workItemComment, DateTime.Now)));
                     }
 
                     _view.Hide();
