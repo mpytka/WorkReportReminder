@@ -19,6 +19,7 @@ namespace WorkReportReminder.DataManagement
         /// <returns></returns>
         public bool Write(string filePath, List<WorkItemDto> workItemsData)
         {
+            //TODO validate file existance
             XDocument workItemsDocument = XDocument.Load(filePath);
 
             if (workItemsDocument != null)
@@ -45,7 +46,7 @@ namespace WorkReportReminder.DataManagement
                                  new XElement("ID", workItem.Id),
                                  new XElement("Title", workItem.Title),
                                  new XElement("Comment", workItem.Comment),
-                                 new XElement("Time", DateTime.Now)
+                                 new XElement("Time", workItem.Time)
                                  )
                     )
                 );

@@ -11,12 +11,12 @@ using System.Reflection;
 using WorkReportReminder.Common;
 using WorkReportReminder.UI;
 
-namespace WorkReportReminder
+namespace WorkReportReminder.UI.Controller
 {
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class ReportReminderController
+    public class ReportReminderViewController
     {
         private IReportReminderView _view;
 
@@ -27,7 +27,7 @@ namespace WorkReportReminder
 
         #endregion
 
-        public ReportReminderController()
+        public ReportReminderViewController()
         {
             _view = new ReportReminderForm(this);
             _view.SetNameAndVersionInfo = NameAndVersionInfo();

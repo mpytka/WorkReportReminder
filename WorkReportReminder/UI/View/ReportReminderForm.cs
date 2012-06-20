@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WorkReportReminder.UI;
+using WorkReportReminder.UI.Controller;
 
 
 namespace WorkReportReminder
@@ -14,17 +15,17 @@ namespace WorkReportReminder
     public partial class ReportReminderForm : Form, IReportReminderView
     {
         private string _nameAndVersionInfo = string.Empty;
-        private ReportReminderController _controller;
+        private ReportReminderViewController _viewController;
 
         #region Properties
 
         #endregion
 
-        public ReportReminderForm(ReportReminderController controller)
+        public ReportReminderForm(ReportReminderViewController viewController)
         {
             InitializeComponent();
             Initialise();
-            _controller = controller;
+            _viewController = viewController;
         }
 
         /// <summary>
@@ -49,6 +50,7 @@ namespace WorkReportReminder
         {
             base.Hide();
             WindowState = FormWindowState.Minimized;
+            TopMost = false;
         }
 
 
@@ -59,6 +61,7 @@ namespace WorkReportReminder
         {
             base.Show();
             WindowState = FormWindowState.Normal;
+            TopMost = true;
         }
 
         #endregion
@@ -67,14 +70,14 @@ namespace WorkReportReminder
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            _controller.SaveReport(idTextBox.Text, titleTextBox.Text, commentTextBox.Text);
+            _viewController.SaveReport(idTextBox.Text, titleTextBox.Text, commentTextBox.Text);
         }
 
         #endregion
 
         private void PostponeButton_Click(object sender, EventArgs e)
         {
-            _controller.PostponeReport();
+            _viewController.PostponeReport();
         }
     }
 }

@@ -7,6 +7,7 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 using WorkReportReminder.Common;
+using WorkReportReminder.UI.Controller;
 
 namespace WorkReportReminder.UI
 {
@@ -15,7 +16,9 @@ namespace WorkReportReminder.UI
     /// </summary>
     public partial class UICore
     {
-        private ReportReminderController _mainController;
+        private ReportReminderViewController _mainViewController;
+        private SettingsViewController _settingsViewController;
+
 
         public event EventHandler PostponeReportReminder;
         public event EventHandler<SaveReportEventArgs> SaveReport;
@@ -24,13 +27,23 @@ namespace WorkReportReminder.UI
         {
             InitialiseComponents();
             InternalInitialise();
+            InitialiseMenuActions();
+        }
+
+        private void InitialiseMenuActions()
+        {
+            CloseMenuItem.Click += CloseMenuItemOnClick;
+            ShowMenuItem.Click += ShowMenuItemOnClick;
+            SettingsMenuItem.Click += SettingsMenuItemOnClick;
         }
 
         private void InternalInitialise()
         {
-            _mainController = new ReportReminderController();
-            _mainController.PostponeReportReminder += OnPostponeReport;
-            _mainController.SaveReportData += OnSaveReport;
+            _mainViewController = new ReportReminderViewController();
+            _mainViewController.PostponeReportReminder += OnPostponeReport;
+            _mainViewController.SaveReportData += OnSaveReport;
+
+            _settingsViewController = new SettingsViewController();
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)
@@ -58,7 +71,26 @@ namespace WorkReportReminder.UI
 
         public void ShowMainForm()
         {
-            _mainController.Show();
+            _mainViewController.Show();
         }
+
+        #region MenuActions
+
+        private void ShowMenuItemOnClick(object sender, EventArgs eventArgs)
+        {
+            _mainViewController.Show();
+        }
+
+        private void CloseMenuItemOnClick(object sender, EventArgs eventArgs)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SettingsMenuItemOnClick(object sender, EventArgs eventArgs)
+        {
+            _settingsViewController.Show();
+        }
+
+        #endregion
     }
 }
