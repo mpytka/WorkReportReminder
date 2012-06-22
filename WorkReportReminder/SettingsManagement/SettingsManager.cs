@@ -7,14 +7,14 @@ namespace WorkReportReminder.SettingsManagement
 {
     public class SettingsManager
     {
-        public SettingsDto ReadAll()
-        {
-            return new SettingsDto();
-        }
+        //public SettingsDto ReadAll()
+        //{
+        //    return new SettingsDto();
+        //}
 
-        public void WriteAll(SettingsDto settings)
-        {
+        //public void WriteAll(SettingsDto settings)
+        //{
             
-        }
+        //}
     }
 }

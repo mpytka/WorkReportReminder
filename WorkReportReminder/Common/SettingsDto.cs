@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace WorkReportReminder.SettingsManagement
 {
-    public class SettingsDto
+    public class SettingsDto 
     {
+        public SettingsDto(DateTime startShift, DateTime endShift, TimeSpan reminderInterval, TimeSpan postponeReminderInterval)
+        {
+            StartShift = startShift;
+            EndShift = endShift;
+            ReportReminderInterval = reminderInterval;
+            PostponeReportReminderInterval = postponeReminderInterval;
+        }
         /// <summary>
         /// Shift start time.
         /// </summary>
@@ -26,5 +34,6 @@ namespace WorkReportReminder.SettingsManagement
         /// Interval used to show postponed report reminder view. 
         /// </summary>
         public TimeSpan PostponeReportReminderInterval { get; private set; }
+
     }
 }
