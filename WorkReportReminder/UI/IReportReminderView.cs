@@ -19,5 +19,11 @@ namespace WorkReportReminder.UI
         /// Sets name and version info, that is displayed on form.
         /// </summary>
         string SetNameAndVersionInfo { set; }
+
+        /// <summary>
+        /// Displays error message.
+        /// </summary>
+        /// <param name="error"></param>
+        void DisplayErrorMsg(string errorTitle, string errorMsg);
     }
 }

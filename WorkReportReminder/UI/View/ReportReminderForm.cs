@@ -44,6 +44,15 @@ namespace WorkReportReminder
         }
 
         /// <summary>
+        /// Displays error message.
+        /// </summary>
+        /// <param name="error"></param>
+        public void DisplayErrorMsg(string errorTitle, string errorMessage)
+        {
+            MessageBox.Show(errorMessage, errorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
         /// Hides form to tray.
         /// </summary>
         public new void Hide()

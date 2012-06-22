@@ -45,30 +45,37 @@ namespace WorkReportReminder.UI.Controller
         }
 
         /// <summary>
-        /// If validation pass fires SaveReport event, return true and hide view. Else return false.
+        /// If validation pass fires SaveReport event and hide view, else shows error message.
         /// </summary>
         /// <param name="workItemId"></param>
         /// <param name="workItemTitle"></param>
         /// <param name="workItemComment"></param>
         /// <returns></returns>
-        public bool SaveReport(string workItemId, string workItemTitle, string workItemComment)
+        public void SaveReport(string workItemId, string workItemTitle, string workItemComment)
         {
-            if(ValidateWorkItemID(workItemId))
+            try
             {
-                if(ValidateWorkItemTitle(workItemTitle))
+                ValidateWorkItemID(workItemId);
+                ValidateWorkItemTitle(workItemTitle);
+
+                EventHandler<SaveReportEventArgs> temp = SaveReportData;
+                if (temp != null)
                 {
-                    EventHandler<SaveReportEventArgs> temp = SaveReportData;
-                    if(temp != null)
-                    {
-                        temp(this, new SaveReportEventArgs(new WorkItemDto(int.Parse(workItemId), workItemTitle, workItemComment, DateTime.Now)));
-                    }
-
-                    _view.Hide();
-                    return true;
+                    temp(this,
+                         new SaveReportEventArgs(
+                             new WorkItemDto(
+                                 int.Parse(workItemId), 
+                                 workItemTitle, 
+                                 workItemComment,
+                                 DateTime.Now)));
                 }
-            }
 
-            return false;
+                _view.Hide();
+            }
+            catch(Exception e)
+            {
+                _view.DisplayErrorMsg("Entered value error", e.Message);
+            }
         }
 
         /// <summary>
@@ -76,15 +83,11 @@ namespace WorkReportReminder.UI.Controller
         /// </summary>
         /// <param name="workItemTitle"></param>
         /// <returns></returns>
-        private bool ValidateWorkItemTitle(string workItemTitle)
+        private void ValidateWorkItemTitle(string workItemTitle)
         {
-            if(workItemTitle != string.Empty)
+            if(workItemTitle == string.Empty)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                throw new FormatException("Title field cannot be empty.");
             }
         }
 
@@ -93,15 +96,19 @@ namespace WorkReportReminder.UI.Controller
         /// </summary>
         /// <param name="workItemId"></param>
         /// <returns></returns>
-        private bool ValidateWorkItemID(string workItemId)
+        private void ValidateWorkItemID(string workItemId)
         {
-            if (workItemId != string.Empty)
+            try
             {
-                return true;
+                Convert.ToInt32(workItemId);
             }
-            else
+            catch(FormatException)
             {
-                return false;
+                throw new FormatException("ID must be integer value.");
+            }
+            catch(OverflowException)
+            {
+                throw new OverflowException("ID has incorrect value.");
             }
         }
 
