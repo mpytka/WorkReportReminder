@@ -30,7 +30,7 @@ namespace WorkReportReminder.UI.Controller
         public ReportReminderViewController()
         {
             _view = new ReportReminderForm(this);
-            _view.SetNameAndVersionInfo = NameAndVersionInfo();
+            Initialise();
         }
 
         public void PostponeReport()
@@ -74,7 +74,7 @@ namespace WorkReportReminder.UI.Controller
             }
             catch(Exception e)
             {
-                _view.DisplayErrorMsg("Entered value error", e.Message);
+                _view.DisplayErrorMsg("Entered value error.", e.Message);
             }
         }
 

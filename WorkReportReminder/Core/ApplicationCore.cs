@@ -26,6 +26,8 @@ namespace WorkReportReminder.Core
         private UICore _uiCore;
         private ITimeManager _timeManager;
         private IDataManager _dataManager;
+        private IComponentFactory _componentFactory;
+
 
         public ApplicationCore()
         {
@@ -34,16 +36,17 @@ namespace WorkReportReminder.Core
 
         private void Initialise()
         {
-            _uiCore = new UICore();
+            _componentFactory = new ComponentFactory();
+
+            _uiCore = _componentFactory.CreateUICore();
             _uiCore.PostponeReportReminder += OnPostponeReport;
             _uiCore.SaveReport += OnSaveReport;
 
-            _timeManager = new MainTimeManager();
-            _timeManager.InitialiseTimer();
+            _timeManager = _componentFactory.CreateTimeManager();
             _timeManager.StartTimer();
             _timeManager.TimeElapsed += MainTimerElapsed;
 
-            _dataManager = new XmlDataManager();
+            _dataManager = _componentFactory.CreateDataManager();
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)

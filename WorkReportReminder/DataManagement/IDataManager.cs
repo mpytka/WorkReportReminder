@@ -6,7 +6,7 @@ using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
 {
-    interface IDataManager
+    public interface IDataManager
     {
         /// <summary>
         /// Writes work item data.

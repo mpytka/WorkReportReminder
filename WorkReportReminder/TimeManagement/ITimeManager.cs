@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WorkReportReminder.SettingsManagement;
 
 namespace WorkReportReminder.TimeManagement
 {
-    interface ITimeManager
+    public interface ITimeManager
     {
         event EventHandler TimeElapsed;
 
         /// <summary>
         /// Initialises timer values.
         /// </summary>
-        void InitialiseTimer();
+        void InitialiseTimer(ConfigurationManager configManager);
 
         /// <summary>
         /// Starts timer.

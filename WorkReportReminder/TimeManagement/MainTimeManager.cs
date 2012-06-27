@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Threading;
+using WorkReportReminder.SettingsManagement;
 
 namespace WorkReportReminder.TimeManagement
 {
@@ -28,12 +29,12 @@ namespace WorkReportReminder.TimeManagement
         /// <summary>
         /// Initialises timer values.
         /// </summary>
-        public void InitialiseTimer()
+        public void InitialiseTimer(ConfigurationManager _config)
         {
             _timer = new DispatcherTimer();
             //TODO: settings 
-            _normalTimerDelay = new TimeSpan(0,1,0,0);
-            _postponeTimerDelay = new TimeSpan(0,0,30,0);
+            _normalTimerDelay = _config.GetTimeSpanValue(SettingKey.ReportReminderInterval);
+            _postponeTimerDelay = _config.GetTimeSpanValue(SettingKey.PostponeReportReminderInterval);
 
             _timer.Interval = _normalTimerDelay;
             _timer.Tick += OnTimerTick;
