@@ -1,0 +1,10 @@
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\bin\Debug\WorkReportReminder.exe
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\bin\Debug\WorkReportReminder.pdb
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.Properties.Resources.resources
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.exe
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.pdb
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.ReportReminderForm.resources
+C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.UI.View.SettingsForm.resources
