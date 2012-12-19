@@ -8,3 +8,5 @@ C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\w
 C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.pdb
 C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.ReportReminderForm.resources
 C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.UI.View.SettingsForm.resources
+C:\Users\michal\Documents\Visual Studio 2012\Projects\WorkReportReminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.exe
+C:\Users\michal\Documents\Visual Studio 2012\Projects\WorkReportReminder\WorkReportReminder\obj\x86\Debug\WorkReportReminder.pdb
