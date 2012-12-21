@@ -4,7 +4,7 @@ using WorkReportReminder.SettingsManagement;
 
 namespace WorkReportReminder.TimeManagement
 {
-    class MainTimeGuard : ITimeGuard
+    class TimeGuard : ITimeGuard
     {
         private DispatcherTimer _timer;
         private TimeSpan _normalTimerDelay;
@@ -12,7 +12,7 @@ namespace WorkReportReminder.TimeManagement
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            EventHandler temp = TimeElapsed;
+            EventHandler temp = TimerRaised;
             if (temp != null)
             {
                 temp(this, e);
@@ -21,7 +21,7 @@ namespace WorkReportReminder.TimeManagement
 
         #region Implementation of ITimeGuard
 
-        public event EventHandler TimeElapsed;
+        public event EventHandler TimerRaised;
 
         /// <summary>
         /// Initialises timer values.
@@ -46,7 +46,7 @@ namespace WorkReportReminder.TimeManagement
         }
 
         /// <summary>
-        /// Reset timer.
+        /// Resets timer.
         /// </summary>
         public void ResetTimer()
         {
@@ -56,7 +56,7 @@ namespace WorkReportReminder.TimeManagement
         }
 
         /// <summary>
-        /// Kill timer.
+        /// Kills timer.
         /// </summary>
         public void KillTimer()
         {

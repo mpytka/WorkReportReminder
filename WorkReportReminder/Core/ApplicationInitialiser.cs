@@ -12,29 +12,38 @@ namespace WorkReportReminder.Core
 {
     public class ApplicationInitialiser : IApplicationInitialiser
     {
-        private readonly IConfigurationCreator _configurationManager;
+        private readonly IConfigurationCreator _configurationCreator;
 
-        public ApplicationInitialiser()
+        public ApplicationInitialiser(IConfigurationCreator configurationCreator)
         {
-            _configurationManager = new ConfigurationManager();
+            _configurationCreator = configurationCreator;
         }
 
+        /// <summary>
+        /// Creates and initialises ui core service.
+        /// </summary>
         public UICore InitialiseUICore()
         {
             return new UICore();
         }
 
-        public IDataManager InitialiseDataManagemer()
+        /// <summary>
+        /// Creates and initialises data manager service.
+        /// </summary>
+        public IDataManager InitialiseDataManager()
         {
             ///some kind of library loader to load plugin dll
             return new XmlDataManager();
         }
 
+        /// <summary>
+        /// Creates and initialises time guard service.
+        /// </summary>
         public ITimeGuard InitialiseTimeGuard()
         {
-            var config = _configurationManager.TimeGuardConfiguration();
+            var config = _configurationCreator.TimeGuardConfiguration();
 
-            ITimeGuard timeGuard = new MainTimeGuard();
+            ITimeGuard timeGuard = new TimeGuard();
             timeGuard.InitialiseTimer(config);
             return timeGuard;
         }

@@ -7,10 +7,19 @@ namespace WorkReportReminder.Common
 {
     public interface IApplicationInitialiser
     {
+        /// <summary>
+        /// Creates and initialises ui core service.
+        /// </summary>
         UICore InitialiseUICore();
 
-        IDataManager InitialiseDataManagemer();
+        /// <summary>
+        /// Creates and initialises data manager service.
+        /// </summary>
+        IDataManager InitialiseDataManager();
 
+        /// <summary>
+        /// Creates and initialises time guard service.
+        /// </summary>
         ITimeGuard InitialiseTimeGuard();
     }
 }

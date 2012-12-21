@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using WorkReportReminder.Common;
 using WorkReportReminder.DataManagement;
+using WorkReportReminder.SettingsManagement;
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI;
 
@@ -36,7 +37,8 @@ namespace WorkReportReminder.Core
 
         private void Initialise()
         {
-            _applicationInitialiser = new ApplicationInitialiser();
+            var config = new ConfigurationManager();
+            _applicationInitialiser = new ApplicationInitialiser(config);
 
             _uiCore = _applicationInitialiser.InitialiseUICore();
             _uiCore.PostponeReportReminder += OnPostponeReport;
@@ -44,16 +46,15 @@ namespace WorkReportReminder.Core
 
             _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
             _timeGuard.StartTimer();
-            _timeGuard.TimeElapsed += MainTimerElapsed;
+            _timeGuard.TimerRaised += OnTimerRaised;
 
-            _dataManager = _applicationInitialiser.InitialiseDataManagemer();
+            _dataManager = _applicationInitialiser.InitialiseDataManager();
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
             _timeGuard.ResetTimer();
-            List<WorkItemDto> tempWiList = new List<WorkItemDto>();
-            tempWiList.Add(e.WorkItemData);
+            var tempWiList = new List<WorkItemDto> {e.WorkItemData};
 
             _dataManager.Write(tempWiList);
         }
@@ -63,7 +64,7 @@ namespace WorkReportReminder.Core
             _timeGuard.PostponeTimer();
         }
 
-        private void MainTimerElapsed(object sender, EventArgs eventArgs)
+        private void OnTimerRaised(object sender, EventArgs eventArgs)
         {
             _uiCore.ShowMainForm();
         }
