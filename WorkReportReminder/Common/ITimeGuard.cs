@@ -8,7 +8,7 @@ namespace WorkReportReminder.TimeManagement
 {
     public interface ITimeGuard
     {
-        event EventHandler TimeElapsed;
+        event EventHandler TimerRaised;
 
         /// <summary>
         /// Initialises timer values.

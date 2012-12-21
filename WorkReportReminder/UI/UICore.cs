@@ -19,7 +19,6 @@ namespace WorkReportReminder.UI
         private ReportReminderViewController _mainViewController;
         private SettingsViewController _settingsViewController;
 
-
         public event EventHandler PostponeReportReminder;
         public event EventHandler<SaveReportEventArgs> SaveReport;
 
@@ -27,10 +26,10 @@ namespace WorkReportReminder.UI
         {
             InitialiseComponents();
             InternalInitialise();
-            InitialiseMenuActions();
+            HookToMenuActions();
         }
 
-        private void InitialiseMenuActions()
+        private void HookToMenuActions()
         {
             CloseMenuItem.Click += CloseMenuItemOnClick;
             ShowMenuItem.Click += ShowMenuItemOnClick;
@@ -46,6 +45,9 @@ namespace WorkReportReminder.UI
             _settingsViewController = new SettingsViewController();
         }
 
+        /// <summary>
+        /// Fired when user want to save a report.
+        /// </summary>
         private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
             EventHandler<SaveReportEventArgs> temp = SaveReport;
@@ -55,6 +57,9 @@ namespace WorkReportReminder.UI
             }
         }
 
+        /// <summary>
+        /// Fired when user postpone report saving.
+        /// </summary>
         private void OnPostponeReport(object sender, EventArgs e)
         {
             EventHandler temp = PostponeReportReminder;

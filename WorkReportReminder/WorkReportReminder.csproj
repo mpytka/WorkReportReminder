@@ -65,7 +65,7 @@
     <Compile Include="SettingsManagement\SettingsWritter.cs" />
     <Compile Include="SettingsManagement\TimeGuardConfiguration.cs" />
     <Compile Include="Common\ITimeGuard.cs" />
-    <Compile Include="TimeManagement\MainTimeGuard.cs" />
+    <Compile Include="TimeManagement\TimeGuard.cs" />
     <Compile Include="UI\Controller\SettingsViewController.cs" />
     <Compile Include="UI\IReportReminderView.cs" />
     <Compile Include="UI\UICore.Designer.cs" />
