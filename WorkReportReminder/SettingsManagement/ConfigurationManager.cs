@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using WorkReportReminder.TimeManagement;
 
 namespace WorkReportReminder.SettingsManagement
 {
-    public enum SettingKey
+    internal enum SettingKey
     {
         ShiftStart,
         ShiftEnd,
@@ -16,7 +12,7 @@ namespace WorkReportReminder.SettingsManagement
     }
 
     //TODO: possibility to write settings file
-    public class ConfigurationManager
+    public class ConfigurationManager : IConfigurationCreator
     {
         private const string CONFIG_FILE_NAME = "settings.xml";
 
@@ -29,13 +25,22 @@ namespace WorkReportReminder.SettingsManagement
             _writter = new SettingsWritter(CONFIG_FILE_NAME);
         }
 
-        public string GetStringValue(SettingKey key)
+        /// <summary>
+        /// Create configuration obect used to initialise time guard service.
+        /// </summary>
+        public TimeGuardConfiguration TimeGuardConfiguration()
         {
-            string value = _reader.GetValue(key);
-            return value;
+            var normalTimeSpan = GetTimeSpanValue(SettingKey.ReportReminderInterval);
+            var postponeTimeSpan = GetTimeSpanValue(SettingKey.PostponeReportReminderInterval);
+
+            var timeConfig = new TimeGuardConfiguration(normalTimeSpan, postponeTimeSpan);
+            return timeConfig;
         }
 
-        public int GetIntValue(SettingKey key)
+        /// <summary>
+        /// Get configuration value for specified key name and try to parse it as Int.
+        /// </summary>
+        private int GetIntValue(SettingKey key)
         {
             string value = _reader.GetValue(key);
             try
@@ -48,7 +53,10 @@ namespace WorkReportReminder.SettingsManagement
             }
         }
 
-        public DateTime GetDateTimeValue(SettingKey key)
+        /// <summary>
+        /// Get configuration value for specified key name and try to parse it as DateTime.
+        /// </summary>
+        private DateTime GetDateTimeValue(SettingKey key)
         {
             string value = _reader.GetValue(key);
             try
@@ -61,7 +69,10 @@ namespace WorkReportReminder.SettingsManagement
             }
         }
 
-        public TimeSpan GetTimeSpanValue(SettingKey key)
+        /// <summary>
+        /// Get configuration value for specified key name and try to parse it as TimeSpan.
+        /// </summary>
+        private TimeSpan GetTimeSpanValue(SettingKey key)
         {
             string value = _reader.GetValue(key);
             try
@@ -74,6 +85,9 @@ namespace WorkReportReminder.SettingsManagement
             }
         }
 
+        /// <summary>
+        /// Error message shown (in exception) when try to read key with invalid value.
+        /// </summary>
         private string ErrorMessage(object sender, SettingKey key)
         {
             string error = string.Format("Key \"{0}\" does not contain {1} value.", key.ToString(), sender);

@@ -6,14 +6,14 @@ using WorkReportReminder.SettingsManagement;
 
 namespace WorkReportReminder.TimeManagement
 {
-    public interface ITimeManager
+    public interface ITimeGuard
     {
         event EventHandler TimeElapsed;
 
         /// <summary>
         /// Initialises timer values.
         /// </summary>
-        void InitialiseTimer(ConfigurationManager configManager);
+        void InitialiseTimer(TimeGuardConfiguration configManager);
 
         /// <summary>
         /// Starts timer.

@@ -10,32 +10,33 @@ using WorkReportReminder.UI;
 
 namespace WorkReportReminder.Core
 {
-    public class ComponentFactory : IComponentFactory
+    public class ApplicationInitialiser : IApplicationInitialiser
     {
-        private ConfigurationManager _configurationManager;
+        private readonly IConfigurationCreator _configurationManager;
 
-        public ComponentFactory()
+        public ApplicationInitialiser()
         {
             _configurationManager = new ConfigurationManager();
         }
 
-        public UICore CreateUICore()
+        public UICore InitialiseUICore()
         {
             return new UICore();
         }
 
-        public IDataManager CreateDataManager()
+        public IDataManager InitialiseDataManagemer()
         {
             ///some kind of library loader to load plugin dll
             return new XmlDataManager();
         }
 
-        public ITimeManager CreateTimeManager()
+        public ITimeGuard InitialiseTimeGuard()
         {
-            ///some kind of library loader to load plugin dll
-            ITimeManager timeManager = new MainTimeManager();
-            timeManager.InitialiseTimer(_configurationManager);
-            return timeManager;
+            var config = _configurationManager.TimeGuardConfiguration();
+
+            ITimeGuard timeGuard = new MainTimeGuard();
+            timeGuard.InitialiseTimer(config);
+            return timeGuard;
         }
     }
 }

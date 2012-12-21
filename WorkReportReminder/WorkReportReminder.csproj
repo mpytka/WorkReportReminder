@@ -47,11 +47,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IComponentFactory.cs" />
+    <Compile Include="Common\IApplicationInitialiser.cs" />
     <Compile Include="Common\SaveReportEventArgs.cs" />
     <Compile Include="Common\WorkItemDto.cs" />
     <Compile Include="Core\ApplicationCore.cs" />
-    <Compile Include="Core\ComponentFactory.cs" />
+    <Compile Include="Core\ApplicationInitialiser.cs" />
     <Compile Include="DataManagement\IDataManager.cs" />
     <Compile Include="DataManagement\IDataReader.cs" />
     <Compile Include="DataManagement\IDataWriter.cs" />
@@ -60,10 +60,12 @@
     <Compile Include="DataManagement\XmlData\XmlDataWriter.cs" />
     <Compile Include="Common\SettingsDto.cs" />
     <Compile Include="SettingsManagement\ConfigurationManager.cs" />
+    <Compile Include="Common\IConfigurationCreator.cs" />
     <Compile Include="SettingsManagement\SettingsReader.cs" />
     <Compile Include="SettingsManagement\SettingsWritter.cs" />
-    <Compile Include="TimeManagement\ITimeManager.cs" />
-    <Compile Include="TimeManagement\MainTimeManager.cs" />
+    <Compile Include="SettingsManagement\TimeGuardConfiguration.cs" />
+    <Compile Include="Common\ITimeGuard.cs" />
+    <Compile Include="TimeManagement\MainTimeGuard.cs" />
     <Compile Include="UI\Controller\SettingsViewController.cs" />
     <Compile Include="UI\IReportReminderView.cs" />
     <Compile Include="UI\UICore.Designer.cs" />

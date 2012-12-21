@@ -16,7 +16,7 @@ namespace WorkReportReminder.Core
 {
     /// <summary>
     /// TODO: 
-    /// ITimeManager - BeginShift/EndShift;
+    /// ITimeGuard - BeginShift/EndShift;
     /// ISettingsManager;
     /// IDataManager;
     /// IWorkItemData as DTO instead of string parameters;
@@ -24,9 +24,9 @@ namespace WorkReportReminder.Core
     public class ApplicationCore : ApplicationContext
     {
         private UICore _uiCore;
-        private ITimeManager _timeManager;
+        private ITimeGuard _timeGuard;
         private IDataManager _dataManager;
-        private IComponentFactory _componentFactory;
+        private IApplicationInitialiser _applicationInitialiser;
 
 
         public ApplicationCore()
@@ -36,22 +36,22 @@ namespace WorkReportReminder.Core
 
         private void Initialise()
         {
-            _componentFactory = new ComponentFactory();
+            _applicationInitialiser = new ApplicationInitialiser();
 
-            _uiCore = _componentFactory.CreateUICore();
+            _uiCore = _applicationInitialiser.InitialiseUICore();
             _uiCore.PostponeReportReminder += OnPostponeReport;
             _uiCore.SaveReport += OnSaveReport;
 
-            _timeManager = _componentFactory.CreateTimeManager();
-            _timeManager.StartTimer();
-            _timeManager.TimeElapsed += MainTimerElapsed;
+            _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
+            _timeGuard.StartTimer();
+            _timeGuard.TimeElapsed += MainTimerElapsed;
 
-            _dataManager = _componentFactory.CreateDataManager();
+            _dataManager = _applicationInitialiser.InitialiseDataManagemer();
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
-            _timeManager.ResetTimer();
+            _timeGuard.ResetTimer();
             List<WorkItemDto> tempWiList = new List<WorkItemDto>();
             tempWiList.Add(e.WorkItemData);
 
@@ -60,7 +60,7 @@ namespace WorkReportReminder.Core
 
         private void OnPostponeReport(object sender, EventArgs e)
         {
-            _timeManager.PostponeTimer();
+            _timeGuard.PostponeTimer();
         }
 
         private void MainTimerElapsed(object sender, EventArgs eventArgs)

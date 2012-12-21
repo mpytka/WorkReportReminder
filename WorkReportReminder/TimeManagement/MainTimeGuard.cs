@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Threading;
 using WorkReportReminder.SettingsManagement;
 
 namespace WorkReportReminder.TimeManagement
 {
-    class MainTimeManager : ITimeManager
+    class MainTimeGuard : ITimeGuard
     {
         private DispatcherTimer _timer;
         private TimeSpan _normalTimerDelay;
@@ -22,19 +19,19 @@ namespace WorkReportReminder.TimeManagement
             }
         }
 
-        #region Implementation of ITimeManager
+        #region Implementation of ITimeGuard
 
         public event EventHandler TimeElapsed;
 
         /// <summary>
         /// Initialises timer values.
         /// </summary>
-        public void InitialiseTimer(ConfigurationManager _config)
+        public void InitialiseTimer(TimeGuardConfiguration config)
         {
             _timer = new DispatcherTimer();
             //TODO: settings 
-            _normalTimerDelay = _config.GetTimeSpanValue(SettingKey.ReportReminderInterval);
-            _postponeTimerDelay = _config.GetTimeSpanValue(SettingKey.PostponeReportReminderInterval);
+            _normalTimerDelay = config.NormalTimeInterval;
+            _postponeTimerDelay = config.PostponeTimeInterval;
 
             _timer.Interval = _normalTimerDelay;
             _timer.Tick += OnTimerTick;
