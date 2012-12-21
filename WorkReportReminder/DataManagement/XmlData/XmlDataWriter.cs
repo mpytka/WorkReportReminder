@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -20,6 +21,12 @@ namespace WorkReportReminder.DataManagement
         public bool Write(string filePath, List<WorkItemDto> workItemsData)
         {
             //TODO validate file existance
+            FileInfo file = new FileInfo(filePath);
+            if (!file.Exists)
+            {
+                CreateOutputFile(filePath);
+            }
+
             XDocument workItemsDocument = XDocument.Load(filePath);
 
             if (workItemsDocument != null)
@@ -50,9 +57,16 @@ namespace WorkReportReminder.DataManagement
                                  )
                     )
                 );
-
+            
             workItemsDocument.Save(filePath);
             return true;
+        }
+
+        private void CreateOutputFile(string filePath)
+        {
+            XDocument newXml = new XDocument(
+                new XElement("WorkItems"));
+            newXml.Save(filePath, SaveOptions.None);
         }
 
         #endregion
