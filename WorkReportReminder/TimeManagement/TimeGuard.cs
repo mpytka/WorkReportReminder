@@ -29,7 +29,6 @@ namespace WorkReportReminder.TimeManagement
         public void InitialiseTimer(TimeGuardConfiguration config)
         {
             _timer = new DispatcherTimer();
-            //TODO: settings 
             _normalTimerDelay = config.NormalTimeInterval;
             _postponeTimerDelay = config.PostponeTimeInterval;
 

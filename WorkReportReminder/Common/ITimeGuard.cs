@@ -21,12 +21,12 @@ namespace WorkReportReminder.TimeManagement
         void StartTimer();
 
         /// <summary>
-        /// Reset timer.
+        /// Resets timer.
         /// </summary>
         void ResetTimer();
 
         /// <summary>
-        /// Kill timer.
+        /// Kills timer.
         /// </summary>
         void KillTimer();
 
