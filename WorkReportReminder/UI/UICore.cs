@@ -29,6 +29,18 @@ namespace WorkReportReminder.UI
             HookToMenuActions();
         }
 
+        public void ShowMainForm()
+        {
+            _mainViewController.Show();
+        }
+
+        public void InitialiseViewData(WorkItemDto item)
+        {
+            _mainViewController.FillViewWithWorkItemData(item);
+        }
+
+        #region Private
+
         private void HookToMenuActions()
         {
             CloseMenuItem.Click += CloseMenuItemOnClick;
@@ -69,14 +81,11 @@ namespace WorkReportReminder.UI
             }
         }
 
+        #endregion
+
         private void NotificationIcon_DoubleClick(object sender, EventArgs e)
         {
             ShowMainForm();
-        }
-
-        public void ShowMainForm()
-        {
-            _mainViewController.Show();
         }
 
         #region MenuActions

@@ -1,9 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MainController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-using System;
+﻿using System;
 using System.Reflection;
 using WorkReportReminder.Common;
 
@@ -14,7 +9,7 @@ namespace WorkReportReminder.UI.Controller
     /// </summary>
     public class ReportReminderViewController
     {
-        private IReportReminderView _view;
+        private readonly IReportReminderView _view;
 
         #region Events
 
@@ -23,12 +18,27 @@ namespace WorkReportReminder.UI.Controller
 
         #endregion
 
+        /// <summary>
+        /// Fills fields with work item's data.
+        /// It is usable while application initialisation, to not leave fields empty.
+        /// </summary>
+        public void FillViewWithWorkItemData(WorkItemDto item)
+        {
+            _view.Fill(item.Id.ToString(), item.Title, item.Comment);
+        }
+
+        /// <summary>
+        /// Initialises view.
+        /// </summary>
         public ReportReminderViewController()
         {
             _view = new ReportReminderForm(this);
             Initialise();
         }
 
+        /// <summary>
+        /// Fires PostponeReportReminder event.
+        /// </summary>
         public void PostponeReport()
         {
             EventHandler temp = PostponeReportReminder;
@@ -41,12 +51,16 @@ namespace WorkReportReminder.UI.Controller
         }
 
         /// <summary>
+        /// Shows form.
+        /// </summary>
+        public void Show()
+        {
+            _view.Show();
+        }
+
+        /// <summary>
         /// If validation pass fires SaveReport event and hide view, else shows error message.
         /// </summary>
-        /// <param name="workItemId"></param>
-        /// <param name="workItemTitle"></param>
-        /// <param name="workItemComment"></param>
-        /// <returns></returns>
         public void SaveReport(string workItemId, string workItemTitle, string workItemComment)
         {
             try
@@ -129,15 +143,5 @@ namespace WorkReportReminder.UI.Controller
 
             return name + " " + version;
         }
-
-        /// <summary>
-        /// Shows form.
-        /// </summary>
-        public void Show()
-        {
-            _view.Show();
-        }
-
-
     }
 }

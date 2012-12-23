@@ -9,7 +9,7 @@ namespace WorkReportReminder.DataManagement
     public class XmlDataManager : IDataManager
     {
         private string _writableFilePath = "writableFile.xml";
-        private string _readableFilePath = "readableFile.xml";
+        private string _readableFilePath = "writableFile.xml";
 
         private XmlDataReader _reader;
         private XmlDataWriter _writter;

@@ -53,6 +53,16 @@ namespace WorkReportReminder
         }
 
         /// <summary>
+        /// Fills fields with work item's data.
+        /// </summary>
+        public void Fill(string id, string title, string comment)
+        {
+            idTextBox.Text = id;
+            titleTextBox.Text = title;
+            commentTextBox.Text = comment;
+        }
+
+        /// <summary>
         /// Hides form to tray.
         /// </summary>
         public new void Hide()

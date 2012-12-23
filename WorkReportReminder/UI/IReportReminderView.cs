@@ -25,5 +25,10 @@ namespace WorkReportReminder.UI
         /// </summary>
         /// <param name="error"></param>
         void DisplayErrorMsg(string errorTitle, string errorMsg);
+
+        /// <summary>
+        /// Fills fields with work item's data.
+        /// </summary>
+        void Fill(string id, string title, string comment);
     }
 }

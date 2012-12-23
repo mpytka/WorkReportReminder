@@ -16,6 +16,14 @@ namespace WorkReportReminder.DataManagement
 
         public List<WorkItemComment> Comments { get; private set; }
  
+        public static WorkItem Empty 
+        {
+            get
+            {
+                return new WorkItem(0, string.Empty, DateTime.Now, string.Empty);
+            }
+        }
+
         public WorkItem(long id, string title, DateTime startTime, string comment)
         {
             Id = id;

@@ -39,16 +39,19 @@ namespace WorkReportReminder.Core
         {
             var config = new ConfigurationManager();
             _applicationInitialiser = new ApplicationInitialiser(config);
+            _dataManager = _applicationInitialiser.InitialiseDataManager();
 
             _uiCore = _applicationInitialiser.InitialiseUICore();
             _uiCore.PostponeReportReminder += OnPostponeReport;
             _uiCore.SaveReport += OnSaveReport;
+            var item = _dataManager.ReadLastItem();
+            _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Content, item.EndTime));
 
             _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
             _timeGuard.StartTimer();
             _timeGuard.TimerRaised += OnTimerRaised;
 
-            _dataManager = _applicationInitialiser.InitialiseDataManager();
+            
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)

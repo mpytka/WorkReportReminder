@@ -13,7 +13,7 @@ namespace WorkReportReminder.Common
 
         public DateTime Time { get; set; }
 
-        public WorkItemDto(int id, string title, string comment, DateTime time)
+        public WorkItemDto(long id, string title, string comment, DateTime time)
         {
             Id = id;
             Title = title;

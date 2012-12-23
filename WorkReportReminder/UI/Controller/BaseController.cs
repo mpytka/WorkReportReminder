@@ -15,6 +15,5 @@ namespace WorkReportReminder
     /// </summary>
     public abstract class BaseController
     {
-        public abstract void ShowModel();
     }
 }
