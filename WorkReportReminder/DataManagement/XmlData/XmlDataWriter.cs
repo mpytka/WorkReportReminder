@@ -38,6 +38,9 @@ namespace WorkReportReminder.DataManagement
                 var newWorkItem = new WorkItem(singleWorkItemData.Id, singleWorkItemData.Title,
                                                     singleWorkItemData.Time, singleWorkItemData.Comment);
                 allWorkItemsData.Add(newWorkItem);
+
+                //update end time of previous work item when adding new one.
+                allWorkItemsData[allWorkItemsData.Count].UpdateEndTime(singleWorkItemData.Time);
             }
             else
             {
@@ -48,14 +51,17 @@ namespace WorkReportReminder.DataManagement
             UpdateReportFile(filePath, allWorkItemsData);
         }
 
+        #endregion
+
+        /// <summary>
+        /// Search in list for item with the same id and title as specified one.
+        /// Returns null if does not find matching item.
+        /// </summary>
         private WorkItem FindWorkItem(WorkItemDto item, List<WorkItem> allItems)
         {
-            //var workItem = allItems.Find( (long id, string title) => { return (id == item.Id && title == item.Title); });
             var workItem = allItems.Find(wi => wi.Id == item.Id && wi.Title == item.Title);
             return workItem;
         }
-
-        #endregion
 
         /// <summary>
         /// Update file, using data of all existing work items.
