@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Xml;
 using System.Xml.Linq;
-using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
 {
@@ -23,20 +19,20 @@ namespace WorkReportReminder.DataManagement
             if (workItemsDocument != null)
             {
                 fileData = (
-                                                        from workItem in workItemsDocument.Root.Elements("WorkItem")
-                                                        select new WorkItem
-                                                            (
-                                                            int.Parse(workItem.Element("ID").Value),
-                                                            workItem.Element("Title").Value,
-                                                            DateTime.Parse(workItem.Element("StartTime").Value),
-                                                            DateTime.Parse(workItem.Element("EndTime").Value),
-                                                            //reads a list of comments
-                                                            (from comment in workItem.Elements("Comment")
-                                                            select new WorkItemComment(
-                                                                comment.Value, DateTime.Parse(comment.Attribute("Time").Value)
-                                                                )).ToList<WorkItemComment>()
-                                                            )
-                                                    ).ToList<WorkItem>();
+                        from workItem in workItemsDocument.Root.Elements(XmlElements.WorkItem.ToString())
+                        select new WorkItem
+                            (
+                            int.Parse(workItem.Element(XmlElements.Id.ToString()).Value),
+                            workItem.Element(XmlElements.Title.ToString()).Value,
+                            DateTime.Parse(workItem.Element(XmlElements.StartTime.ToString()).Value),
+                            DateTime.Parse(workItem.Element(XmlElements.EndTime.ToString()).Value),
+                            //reads a list of comments
+                            (from comment in workItem.Elements(XmlElements.Comment.ToString())
+                             select new WorkItemComment(
+                                 comment.Value, DateTime.Parse(comment.Attribute(XmlElements.Time.ToString()).Value)
+                                 )).ToList<WorkItemComment>()
+                            )
+                         ).ToList<WorkItem>();
             }
 
             return fileData;

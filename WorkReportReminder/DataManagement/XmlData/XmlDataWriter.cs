@@ -80,16 +80,16 @@ namespace WorkReportReminder.DataManagement
         private static void UpdateReportFile(string filePath, IEnumerable<WorkItem> workItemsData)
         {
             var workItemsDocument = new XDocument(
-                new XElement("WorkItems",
+                new XElement(XmlElements.WorkItems.ToString(),
                              from workItem in workItemsData
                              select new XElement(
-                                 "WorkItem",
-                                 new XElement("ID", workItem.Id),
-                                 new XElement("Title", workItem.Title),
+                                 XmlElements.WorkItem.ToString(),
+                                 new XElement(XmlElements.Id.ToString(), workItem.Id),
+                                 new XElement(XmlElements.Title.ToString(), workItem.Title),
                                  from comment in workItem.Comments
-                                     select new XElement("Comment", new XAttribute("Time", comment.Time), comment.Content),
-                                 new XElement("StartTime", workItem.StartTime),
-                                 new XElement("EndTime", workItem.EndTime)
+                                     select new XElement(XmlElements.Comment.ToString(), new XAttribute(XmlElements.Time.ToString(), comment.Time), comment.Content),
+                                 new XElement(XmlElements.StartTime.ToString(), workItem.StartTime),
+                                 new XElement(XmlElements.EndTime.ToString(), workItem.EndTime)
                                  )
                     )
                 );
@@ -103,10 +103,8 @@ namespace WorkReportReminder.DataManagement
         private void CreateOutputFile(string filePath)
         {
             var newXml = new XDocument(
-                new XElement("WorkItems"));
+                new XElement(XmlElements.WorkItems.ToString()));
             newXml.Save(filePath, SaveOptions.None);
         }
-
-
     }
 }
