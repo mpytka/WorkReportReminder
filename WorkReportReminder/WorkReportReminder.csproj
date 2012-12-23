@@ -61,6 +61,7 @@
     <Compile Include="DataManagement\XmlData\XmlDataReader.cs" />
     <Compile Include="DataManagement\XmlData\XmlDataWriter.cs" />
     <Compile Include="Common\SettingsDto.cs" />
+    <Compile Include="DataManagement\XmlElements.cs" />
     <Compile Include="SettingsManagement\ConfigurationManager.cs" />
     <Compile Include="Common\IConfigurationCreator.cs" />
     <Compile Include="SettingsManagement\SettingsReader.cs" />
