@@ -40,7 +40,7 @@ namespace WorkReportReminder.DataManagement
                 allWorkItemsData.Add(newWorkItem);
 
                 //update end time of previous work item when adding new one.
-                allWorkItemsData[allWorkItemsData.Count].UpdateEndTime(singleWorkItemData.Time);
+                allWorkItemsData[allWorkItemsData.Count-2].UpdateEndTime(singleWorkItemData.Time);
             }
             else
             {
