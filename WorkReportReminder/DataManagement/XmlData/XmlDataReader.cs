@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -15,22 +16,27 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified file.
         /// </summary>
-        public List<WorkItemDto> ReadAllItems(string filePath)
+        public List<WorkItem> ReadAllItems(string filePath)
         {
             XDocument workItemsDocument = XDocument.Load(filePath);
-            var fileData = new List<WorkItemDto>(0);
+            var fileData = new List<WorkItem>(0);
             if (workItemsDocument != null)
             {
                 fileData = (
                                                         from workItem in workItemsDocument.Root.Elements("WorkItem")
-                                                        select new WorkItemDto
+                                                        select new WorkItem
                                                             (
                                                             int.Parse(workItem.Element("ID").Value),
                                                             workItem.Element("Title").Value,
-                                                            workItem.Element("Comment").Value,
-                                                            DateTime.Parse(workItem.Element("Time").Value)
+                                                            DateTime.Parse(workItem.Element("StartTime").Value),
+                                                            DateTime.Parse(workItem.Element("EndTime").Value),
+                                                            //reads a list of comments
+                                                            (from comment in workItem.Elements("Comment")
+                                                            select new WorkItemComment(
+                                                                comment.Value, DateTime.Parse(comment.Attribute("Time").Value)
+                                                                )).ToList<WorkItemComment>()
                                                             )
-                                                    ).ToList<WorkItemDto>();
+                                                    ).ToList<WorkItem>();
             }
 
             return fileData;
@@ -39,17 +45,17 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified file and date.
         /// </summary>
-        public List<WorkItemDto> ReadAllItems(string filePath, DateTime date)
+        public List<WorkItem> ReadAllItems(string filePath, DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public List<WorkItemDto> ReadItemsFromRangeOfTime(string filePath, DateTime begining, DateTime end)
+        public List<WorkItem> ReadItemsFromRangeOfTime(string filePath, DateTime begining, DateTime end)
         {
             throw new NotImplementedException();
         }
 
-        public WorkItemDto ReadLastItem(string filePath)
+        public WorkItem ReadLastItem(string filePath)
         {
             throw new NotImplementedException();
         }

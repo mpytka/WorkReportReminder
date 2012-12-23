@@ -38,7 +38,7 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads data of newest work item.
         /// </summary>
-        public WorkItemDto ReadLastItem()
+        public WorkItem ReadLastItem()
         {
             return _reader.ReadLastItem(_readableFilePath);
         }
@@ -46,7 +46,7 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified date.
         /// </summary>
-        public List<WorkItemDto> Read(DateTime date)
+        public List<WorkItem> Read(DateTime date)
         {
             return _reader.ReadAllItems(_readableFilePath, date);
         }

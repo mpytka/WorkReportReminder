@@ -16,11 +16,11 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads data of last work item from file (the newest one).
         /// </summary>
-        WorkItemDto ReadLastItem();
+        WorkItem ReadLastItem();
 
         /// <summary>
         /// Reads work items data from specified date.
         /// </summary>
-        List<WorkItemDto> Read(DateTime date);
+        List<WorkItem> Read(DateTime date);
     }
 }
