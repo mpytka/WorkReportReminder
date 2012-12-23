@@ -10,42 +10,41 @@ namespace WorkReportReminder.DataManagement
 {
     class XmlDataWriter : IDataWriter
     {
+        private readonly IDataReader _reportFileReader;
+
+        public XmlDataWriter(IDataReader reader)
+        {
+            _reportFileReader = reader;
+        }
+
         #region Implementation of IDataWriter
 
         /// <summary>
         /// Write work items data to specified file.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="workItemsData"></param>
-        /// <returns></returns>
-        public bool Write(string filePath, List<WorkItemDto> workItemsData)
+        public void Write(string filePath, WorkItemDto singleWorkItemData)
         {
-            //TODO validate file existance
-            FileInfo file = new FileInfo(filePath);
+            var file = new FileInfo(filePath);
             if (!file.Exists)
             {
                 CreateOutputFile(filePath);
             }
 
-            XDocument workItemsDocument = XDocument.Load(filePath);
+            var allWorkItemsData = _reportFileReader.ReadAllItems(filePath);
 
-            if (workItemsDocument != null)
-            {
-                List<WorkItemDto> fileData = (
-                                                 from workItem in workItemsDocument.Root.Elements("WorkItem")
-                                                 select new WorkItemDto
-                                                     (
-                                                     int.Parse(workItem.Element("ID").Value),
-                                                     workItem.Element("Title").Value,
-                                                     workItem.Element("Comment").Value,
-                                                     DateTime.Parse(workItem.Element("Time").Value)
-                                                     )
-                                             ).ToList<WorkItemDto>();
+            allWorkItemsData.Add(singleWorkItemData);
 
-                workItemsData.AddRange(fileData);
-            }
+            UpdateReportFile(filePath, allWorkItemsData);
+        }
 
-            workItemsDocument = new XDocument(
+        #endregion
+
+        /// <summary>
+        /// Update file, using data of all existing work items.
+        /// </summary>
+        private static void UpdateReportFile(string filePath, IEnumerable<WorkItemDto> workItemsData)
+        {
+            var workItemsDocument = new XDocument(
                 new XElement("WorkItems",
                              from workItem in workItemsData
                              select new XElement(
@@ -57,18 +56,20 @@ namespace WorkReportReminder.DataManagement
                                  )
                     )
                 );
-            
+
             workItemsDocument.Save(filePath);
-            return true;
         }
 
+        /// <summary>
+        /// Creates empty report file.
+        /// </summary>
         private void CreateOutputFile(string filePath)
         {
-            XDocument newXml = new XDocument(
+            var newXml = new XDocument(
                 new XElement("WorkItems"));
             newXml.Save(filePath, SaveOptions.None);
         }
 
-        #endregion
+
     }
 }

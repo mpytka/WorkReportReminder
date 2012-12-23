@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WorkReportReminder.Common;
+﻿using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
 {
     interface IDataWriter
     {
         /// <summary>
-        /// Write work items data to specified file.
+        /// Add work item data to file.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="workItemsData"></param>
-        /// <returns></returns>
-        bool Write(string filePath, List<WorkItemDto> workItemsData);
+        void Write(string filePath, WorkItemDto singleWorkItemData);
     }
 }

@@ -15,20 +15,41 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified file.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
-        public List<WorkItemDto> Read(string filePath)
+        public List<WorkItemDto> ReadAllItems(string filePath)
         {
-            throw new NotImplementedException();
+            XDocument workItemsDocument = XDocument.Load(filePath);
+            var fileData = new List<WorkItemDto>(0);
+            if (workItemsDocument != null)
+            {
+                fileData = (
+                                                        from workItem in workItemsDocument.Root.Elements("WorkItem")
+                                                        select new WorkItemDto
+                                                            (
+                                                            int.Parse(workItem.Element("ID").Value),
+                                                            workItem.Element("Title").Value,
+                                                            workItem.Element("Comment").Value,
+                                                            DateTime.Parse(workItem.Element("Time").Value)
+                                                            )
+                                                    ).ToList<WorkItemDto>();
+            }
+
+            return fileData;
         }
 
         /// <summary>
         /// Reads work items data from specified file and date.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public List<WorkItemDto> Read(string filePath, DateTime date)
+        public List<WorkItemDto> ReadAllItems(string filePath, DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<WorkItemDto> ReadItemsFromRangeOfTime(string filePath, DateTime begining, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public WorkItemDto ReadLastItem(string filePath)
         {
             throw new NotImplementedException();
         }

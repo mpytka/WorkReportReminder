@@ -54,9 +54,8 @@ namespace WorkReportReminder.Core
         private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
             _timeGuard.ResetTimer();
-            var tempWiList = new List<WorkItemDto> {e.WorkItemData};
 
-            _dataManager.Write(tempWiList);
+            _dataManager.Write(e.WorkItemData);
         }
 
         private void OnPostponeReport(object sender, EventArgs e)

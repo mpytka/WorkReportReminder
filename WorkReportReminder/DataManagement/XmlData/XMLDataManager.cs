@@ -22,7 +22,7 @@ namespace WorkReportReminder.DataManagement
         private void Initialise()
         {
             _reader = new XmlDataReader();
-            _writter = new XmlDataWriter();
+            _writter = new XmlDataWriter(_reader);
         }
 
         #region Implementation of IDataManager
@@ -30,40 +30,25 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Writes work item data.
         /// </summary>
-        /// <param name="workItemData"></param>
-        /// <returns></returns>
-        public bool Write(WorkItemDto workItemData)
+        public void Write(WorkItemDto workItemData)
         {
-            throw new NotImplementedException();
+            _writter.Write(_writableFilePath, workItemData);
         }
 
         /// <summary>
-        /// Writes a list of work items data.
+        /// Reads data of newest work item.
         /// </summary>
-        /// <param name="workItemsData"></param>
-        /// <returns></returns>
-        public bool Write(List<WorkItemDto> workItemsData)
+        public WorkItemDto ReadLastItem()
         {
-            return _writter.Write(_writableFilePath, workItemsData);
-        }
-
-        /// <summary>
-        /// Reads all work items data.
-        /// </summary>
-        /// <returns></returns>
-        public List<WorkItemDto> Read()
-        {
-            throw new NotImplementedException();
+            return _reader.ReadLastItem(_readableFilePath);
         }
 
         /// <summary>
         /// Reads work items data from specified date.
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
         public List<WorkItemDto> Read(DateTime date)
         {
-            throw new NotImplementedException();
+            return _reader.ReadAllItems(_readableFilePath, date);
         }
 
         #endregion

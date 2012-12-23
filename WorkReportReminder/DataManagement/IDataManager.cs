@@ -11,28 +11,16 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Writes work item data.
         /// </summary>
-        /// <param name="workItemData"></param>
-        /// <returns></returns>
-        bool Write(WorkItemDto workItemData);
+        void Write(WorkItemDto workItemData);
 
         /// <summary>
-        /// Writes a list of work items data.
+        /// Reads data of last work item from file (the newest one).
         /// </summary>
-        /// <param name="workItemsData"></param>
-        /// <returns></returns>
-        bool Write(List<WorkItemDto> workItemsData);
-
-        /// <summary>
-        /// Reads all work items data.
-        /// </summary>
-        /// <returns></returns>
-        List<WorkItemDto> Read();
+        WorkItemDto ReadLastItem();
 
         /// <summary>
         /// Reads work items data from specified date.
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
         List<WorkItemDto> Read(DateTime date);
     }
 }

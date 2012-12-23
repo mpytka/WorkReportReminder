@@ -9,15 +9,15 @@ namespace WorkReportReminder.Common
     {
         public int Id { get; private set; }
         public string Title { get; private set; }
-        public string Comment { get; private set; }
+        public Dictionary<DateTime, string> Comment { get; private set; }
 
         public DateTime Time { get; set; }
-
+        
         public WorkItemDto(int id, string title, string comment, DateTime time)
         {
             Id = id;
             Title = title;
-            Comment = comment;
+            Comment = new Dictionary<DateTime, string> {{time, comment}};
             Time = time;
         }
     }
