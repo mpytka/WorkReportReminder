@@ -62,7 +62,7 @@ namespace WorkReportReminder.DataManagement
         {
             //TODO: only temporarly, it can be done better with linq
             var allItems = ReadAllItems(filePath);
-            if (allItems.Count > 1)
+            if (allItems.Count > 0)
             {
                 return allItems[allItems.Count - 1];
             }
