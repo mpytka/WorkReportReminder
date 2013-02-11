@@ -133,15 +133,7 @@ namespace WorkReportReminder.UI.Controller
         /// <returns></returns>
         private string NameAndVersionInfo()
         {
-            string name;
-            string version;
-
-            Assembly assembly = Assembly.GetEntryAssembly();
-
-            name = assembly.GetName().Name;
-            version = assembly.GetName().Version.ToString();
-
-            return name + " " + version;
+            return ApplicationInfo.NameAndVersionInfo;
         }
     }
 }

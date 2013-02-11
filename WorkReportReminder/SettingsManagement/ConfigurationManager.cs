@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using WorkReportReminder.Common;
 
 namespace WorkReportReminder.SettingsManagement
 {
@@ -14,7 +15,7 @@ namespace WorkReportReminder.SettingsManagement
     //TODO: possibility to write settings file
     public class ConfigurationManager : IConfigurationCreator
     {
-        private const string CONFIG_FILE_NAME = "settings.xml";
+        private const string CONFIG_FILE_NAME = "wrr.config";
 
         private SettingsReader _reader;
         private SettingsWritter _writter;
@@ -91,6 +92,7 @@ namespace WorkReportReminder.SettingsManagement
         private string ErrorMessage(object sender, SettingKey key)
         {
             string error = string.Format("Key \"{0}\" does not contain {1} value.", key.ToString(), sender);
+            Log.Instance.Fatal(error);
             return error;
         }
         

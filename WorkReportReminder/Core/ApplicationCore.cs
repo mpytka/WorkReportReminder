@@ -29,7 +29,6 @@ namespace WorkReportReminder.Core
         private IDataManager _dataManager;
         private IApplicationInitialiser _applicationInitialiser;
 
-
         public ApplicationCore()
         {
             Initialise();
@@ -37,6 +36,12 @@ namespace WorkReportReminder.Core
 
         private void Initialise()
         {
+            var logger = new Logger();
+            logger.Configure(true);
+            Log.Initialise(logger);
+
+            Log.Instance.Info(string.Format("\r\nAppName: {0} \r\nAppVersion: {1}", ApplicationInfo.Name, ApplicationInfo.Version));
+
             var config = new ConfigurationManager();
             _applicationInitialiser = new ApplicationInitialiser(config);
             _dataManager = _applicationInitialiser.InitialiseDataManager();
@@ -51,23 +56,25 @@ namespace WorkReportReminder.Core
             _timeGuard.StartTimer();
             _timeGuard.TimerRaised += OnTimerRaised;
 
-            
+            Log.Instance.Info("Initialisation completed.");
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
             _timeGuard.ResetTimer();
-
+            Log.Instance.Info("Work Item saved");
             _dataManager.Write(e.WorkItemData);
         }
 
         private void OnPostponeReport(object sender, EventArgs e)
         {
+            Log.Instance.Info("Application postponed");
             _timeGuard.PostponeTimer();
         }
 
         private void OnTimerRaised(object sender, EventArgs eventArgs)
         {
+            Log.Instance.Info("Application displayed");
             _uiCore.ShowMainForm();
         }
     }
