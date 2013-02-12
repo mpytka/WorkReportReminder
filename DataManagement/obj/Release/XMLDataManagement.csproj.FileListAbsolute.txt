@@ -1,5 +1,0 @@
-C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\DataManagement\bin\Release\DataManagement.dll
-C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\DataManagement\bin\Release\DataManagement.pdb
-C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\DataManagement\obj\Release\ResolveAssemblyReference.cache
-C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\DataManagement\obj\Release\DataManagement.dll
-C:\Users\mjamry\Downloads\git\workreportreminder-workreportreminder-master.tar\workreportreminder-workreportreminder\DataManagement\obj\Release\DataManagement.pdb
