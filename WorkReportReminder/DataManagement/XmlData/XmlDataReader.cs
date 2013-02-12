@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
 {
@@ -15,6 +16,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         public List<WorkItem> ReadAllItems(string filePath)
         {
+            Log.Instance.Info("Reading all items");
             var fileData = new List<WorkItem>(0);
             var file = new FileInfo(filePath);
             if (file.Exists)
@@ -23,25 +25,33 @@ namespace WorkReportReminder.DataManagement
 
                 if (workItemsDocument != null)
                 {
-                    fileData = (
-                                   from workItem in workItemsDocument.Root.Elements(XmlElements.WorkItem.ToString())
-                                   select new WorkItem
-                                       (
-                                       int.Parse(workItem.Element(XmlElements.Id.ToString()).Value),
-                                       workItem.Element(XmlElements.Title.ToString()).Value,
-                                       DateTime.Parse(workItem.Element(XmlElements.StartTime.ToString()).Value),
-                                       DateTime.Parse(workItem.Element(XmlElements.EndTime.ToString()).Value),
-                                       //reads a list of comments
-                                       (from comment in workItem.Elements(XmlElements.Comment.ToString())
-                                        select new WorkItemComment(
-                                            comment.Value,
-                                            DateTime.Parse(comment.Attribute(XmlElements.Time.ToString()).Value)
-                                            )).ToList<WorkItemComment>()
-                                       )
-                               ).ToList<WorkItem>();
+                    try
+                    {
+                        fileData = (
+                                       from workItem in workItemsDocument.Root.Elements(XmlElements.WorkItem.ToString())
+                                       select new WorkItem
+                                           (
+                                           int.Parse(workItem.Element(XmlElements.Id.ToString()).Value),
+                                           workItem.Element(XmlElements.Title.ToString()).Value,
+                                           DateTime.Parse(workItem.Element(XmlElements.StartTime.ToString()).Value),
+                                           DateTime.Parse(workItem.Element(XmlElements.EndTime.ToString()).Value),
+                                           //reads a list of comments
+                                           (from comment in workItem.Elements(XmlElements.Comment.ToString())
+                                            select new WorkItemComment(
+                                                comment.Value,
+                                                DateTime.Parse(comment.Attribute(XmlElements.Time.ToString()).Value)
+                                                )).ToList<WorkItemComment>()
+                                           )
+                                   ).ToList<WorkItem>();
+                    }
+                    catch(Exception e)
+                    {
+                        Log.Instance.Error("Reading file unsuccessful"+e.Message);
+                    }
                 }
             }
 
+            Log.Instance.Info(string.Format("Loaded {0} items", fileData.Count));
             return fileData;
         }
 

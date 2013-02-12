@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using WorkReportReminder.Common;
 
 namespace WorkReportReminder.SettingsManagement
 {
@@ -36,7 +37,10 @@ namespace WorkReportReminder.SettingsManagement
             }
             catch (InvalidOperationException e)
             {
-                throw new ConfigurationException(string.Format("File: {0} does not contain key: {1}", SETTINGS_FILE_NAME, keyName.ToString()));
+                var errMsg = string.Format("File: {0} does not contain key: {1}", SETTINGS_FILE_NAME,
+                                             keyName.ToString());
+                Log.Instance.Fatal(errMsg);
+                throw new ConfigurationException(errMsg);
             }
         }
 
@@ -54,7 +58,9 @@ namespace WorkReportReminder.SettingsManagement
 
             catch (FileNotFoundException e)
             {
-                throw new ConfigurationException(string.Format("File: {0} does not exist.", SETTINGS_FILE_NAME));
+                var errMsg = string.Format("File: {0} does not exist.", SETTINGS_FILE_NAME);
+                Log.Instance.Fatal(errMsg);
+                throw new ConfigurationException(errMsg);
             }
         }
     }

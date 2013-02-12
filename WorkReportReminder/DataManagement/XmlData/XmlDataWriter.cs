@@ -35,6 +35,7 @@ namespace WorkReportReminder.DataManagement
 
             if (workItem == null)
             {
+                Log.Instance.Info("Writing new item to file");
                 var newWorkItem = new WorkItem(singleWorkItemData.Id, singleWorkItemData.Title,
                                                     singleWorkItemData.Time, singleWorkItemData.Comment);
                 allWorkItemsData.Add(newWorkItem);
@@ -44,6 +45,7 @@ namespace WorkReportReminder.DataManagement
             }
             else
             {
+                Log.Instance.Info("Updating existing item");
                 workItem.AddComment(singleWorkItemData.Comment, singleWorkItemData.Time);
                 workItem.UpdateEndTime(singleWorkItemData.Time);
             }
@@ -102,6 +104,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         private void CreateOutputFile(string filePath)
         {
+            Log.Instance.Info("New work items file created.");
             var newXml = new XDocument(
                 new XElement(XmlElements.WorkItems.ToString()));
             newXml.Save(filePath, SaveOptions.None);

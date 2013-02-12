@@ -62,19 +62,16 @@ namespace WorkReportReminder.Core
         private void OnSaveReport(object sender, SaveReportEventArgs e)
         {
             _timeGuard.ResetTimer();
-            Log.Instance.Info("Work Item saved");
             _dataManager.Write(e.WorkItemData);
         }
 
         private void OnPostponeReport(object sender, EventArgs e)
         {
-            Log.Instance.Info("Application postponed");
             _timeGuard.PostponeTimer();
         }
 
         private void OnTimerRaised(object sender, EventArgs eventArgs)
         {
-            Log.Instance.Info("Application displayed");
             _uiCore.ShowMainForm();
         }
     }
