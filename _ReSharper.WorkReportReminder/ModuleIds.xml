@@ -1,7 +1,0 @@
-<Modules>
-  <Module PersistentId="04EB538F-064F-46B9-BAFF-699FC5123D1C" ModuleId="WorkReportReminder" />
-  <Module PersistentId="C787326C-ADE1-48C7-95CD-3E2247CBF8E3" ModuleId="DataManagement" />
-  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
-  <Module PersistentId="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Windows.Forms" />
-  <Module PersistentId="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Xml.Linq" />
-</Modules>

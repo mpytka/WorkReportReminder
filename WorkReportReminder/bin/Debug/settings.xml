@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!--Work report reminder settings file.-->
-<Settings>
-  <ShiftStart></ShiftStart>
-  <ShiftEnd></ShiftEnd>
-  <ReportReminderInterval>01:00:00</ReportReminderInterval>
-  <PostponeReportReminderInterval>00:30:00</PostponeReportReminderInterval>
-</Settings>
