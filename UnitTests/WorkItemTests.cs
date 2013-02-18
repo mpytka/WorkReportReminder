@@ -48,5 +48,25 @@ namespace UnitTests
             Assert.AreEqual(contentComment, workItem.Comments[1].Content);
             Assert.AreEqual(commentTime, workItem.Comments[1].Time);
         }
+
+        [TestMethod]
+        public void ShouldCreateWorkItemUsinFirstConstructor()
+        {
+            // arrange
+            DateTime wiStartTime = new DateTime(2013, 01, 01, 00, 00, 00);
+
+            // act
+            WorkItem workItem = 
+                new WorkItem(id: 0, title: "testTitle", startTime: wiStartTime, comment: "testComment");
+
+            // assert
+            Assert.IsNotNull(workItem);
+            Assert.IsInstanceOfType(workItem, typeof(WorkItem));
+            Assert.AreEqual(0, workItem.Id);
+            Assert.AreEqual("testTitle", workItem.Title);
+            Assert.AreEqual(wiStartTime, workItem.StartTime);
+            Assert.AreEqual(1, workItem.Comments.Count);
+            Assert.AreEqual("testComment", workItem.Comments[0].Content);
+        }
     }
 }
