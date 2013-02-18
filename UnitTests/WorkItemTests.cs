@@ -50,7 +50,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void ShouldCreateWorkItemUsinFirstConstructor()
+        public void ShouldCreateWorkItemUsingFirstConstructor()
         {
             // arrange
             DateTime wiStartTime = new DateTime(2013, 01, 01, 00, 00, 00);
