@@ -84,7 +84,10 @@ namespace WorkReportReminder.UI
 
         #endregion
 
-        private void NotificationIcon_DoubleClick(object sender, EventArgs e)
+        /// <summary>
+        /// Fired when user double click on notification icon.
+        /// </summary>
+        private void OnNotificationIconDoubleClick(object sender, EventArgs e)
         {
             ShowMainForm();
         }
