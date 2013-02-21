@@ -18,6 +18,7 @@ namespace WorkReportReminder.UI
     {
         private ReportReminderViewController _mainViewController;
         private SettingsViewController _settingsViewController;
+        private ReportSummaryController _reportSummary;
 
         public event EventHandler PostponeReportReminder;
         public event EventHandler<SaveReportEventArgs> SaveReport;
@@ -55,6 +56,8 @@ namespace WorkReportReminder.UI
             _mainViewController.SaveReportData += OnSaveReport;
 
             _settingsViewController = new SettingsViewController();
+
+            _reportSummary = new ReportSummaryController();
         }
 
         /// <summary>
