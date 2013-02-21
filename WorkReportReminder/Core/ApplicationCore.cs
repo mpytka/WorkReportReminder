@@ -12,6 +12,7 @@ using WorkReportReminder.DataManagement;
 using WorkReportReminder.SettingsManagement;
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI;
+using WorkReportReminder.UI.Controller;
 
 namespace WorkReportReminder.Core
 {
@@ -49,6 +50,8 @@ namespace WorkReportReminder.Core
             _uiCore = _applicationInitialiser.InitialiseUICore();
             _uiCore.PostponeReportReminder += OnPostponeReport;
             _uiCore.SaveReport += OnSaveReport;
+            _uiCore.DataRequest += OnDataRequested;
+
             var item = _dataManager.ReadLastItem();
             _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Content, item.EndTime));
 
@@ -57,6 +60,12 @@ namespace WorkReportReminder.Core
             _timeGuard.TimerRaised += OnTimerRaised;
 
             Log.Instance.Info("Initialisation completed.");
+        }
+
+        private void OnDataRequested(object sender, DataRequestEventArgs e)
+        {
+            var workItems = _dataManager.Read(e.FileName);
+            _uiCore.UpdateSummaryData(workItems);
         }
 
         private void OnSaveReport(object sender, SaveReportEventArgs e)

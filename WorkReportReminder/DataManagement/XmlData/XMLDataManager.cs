@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
@@ -49,6 +47,14 @@ namespace WorkReportReminder.DataManagement
         public List<WorkItem> Read(DateTime date)
         {
             return _reader.ReadAllItems(_readableFilePath, date);
+        }
+
+        /// <summary>
+        /// Reads work items data from specified file.
+        /// </summary>
+        public List<WorkItem> Read(string fileName)
+        {
+            return _reader.ReadAllItems(fileName);
         }
 
         #endregion

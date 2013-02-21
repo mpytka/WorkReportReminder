@@ -93,6 +93,7 @@
     <Compile Include="SettingsManagement\TimeGuardConfiguration.cs" />
     <Compile Include="Common\ITimeGuard.cs" />
     <Compile Include="TimeManagement\TimeGuard.cs" />
+    <Compile Include="Common\DataRequestEventArgs.cs" />
     <Compile Include="UI\IReportSummaryView.cs" />
     <Compile Include="UI\Controller\ReportSummaryController.cs" />
     <Compile Include="UI\Controller\SettingsViewController.cs" />

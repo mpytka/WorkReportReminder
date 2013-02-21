@@ -18,6 +18,7 @@ namespace WorkReportReminder.UI
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripMenuItem CloseMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShowMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowSummaryMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SettingsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -31,6 +32,9 @@ namespace WorkReportReminder.UI
 
             this.ShowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowMenuItem.Text = "Show";
+            
+            this.ShowSummaryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowSummaryMenuItem.Text = "Summary";
 
             this.SettingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsMenuItem.Text = "Settings";
@@ -56,9 +60,11 @@ namespace WorkReportReminder.UI
             this.IconContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[]
                                                          {
                                                              this.ShowMenuItem,
+                                                             this.ShowSummaryMenuItem,
                                                              this.SettingsMenuItem,
                                                              this.CloseMenuItem
                                                          });
+
             this.IconContextMenuStrip.Name = "IconContextMenuStrip";
             this.IconContextMenuStrip.Size = new System.Drawing.Size(182, 124);
 

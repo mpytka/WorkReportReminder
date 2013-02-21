@@ -4,9 +4,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using WorkReportReminder.Common;
+using WorkReportReminder.DataManagement;
 using WorkReportReminder.UI.Controller;
 
 namespace WorkReportReminder.UI
@@ -22,6 +24,7 @@ namespace WorkReportReminder.UI
 
         public event EventHandler PostponeReportReminder;
         public event EventHandler<SaveReportEventArgs> SaveReport;
+        public event EventHandler<DataRequestEventArgs> DataRequest;
 
         public UICore()
         {
@@ -47,6 +50,7 @@ namespace WorkReportReminder.UI
             CloseMenuItem.Click += CloseMenuItemOnClick;
             ShowMenuItem.Click += ShowMenuItemOnClick;
             SettingsMenuItem.Click += SettingsMenuItemOnClick;
+            ShowSummaryMenuItem.Click += ShowSummaryMenuItemClick;
         }
 
         private void InternalInitialise()
@@ -58,6 +62,16 @@ namespace WorkReportReminder.UI
             _settingsViewController = new SettingsViewController();
 
             _reportSummary = new ReportSummaryController();
+            _reportSummary.DataRequested += OnDataRequested;
+        }
+
+        private void OnDataRequested(object sender, DataRequestEventArgs e)
+        {
+            EventHandler<DataRequestEventArgs> temp = DataRequest;
+            if(temp != null)
+            {
+                temp(sender, e);
+            }
         }
 
         /// <summary>
@@ -108,6 +122,16 @@ namespace WorkReportReminder.UI
             _settingsViewController.Show();
         }
 
+        private void ShowSummaryMenuItemClick(object sender, EventArgs e)
+        {
+            _reportSummary.Show();
+        }
+
         #endregion
+
+        public void UpdateSummaryData(List<WorkItem> workItems)
+        {
+            _reportSummary.UpdateData(workItems);
+        }
     }
 }
