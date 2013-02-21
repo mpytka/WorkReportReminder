@@ -15,7 +15,14 @@ namespace WorkReportReminder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Core.ApplicationCore());
+            var core = new Core.ApplicationCore();
+            core.Close += OnClose;
+            Application.Run(core);
+        }
+
+        static void OnClose(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

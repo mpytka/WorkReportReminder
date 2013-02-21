@@ -13,8 +13,8 @@ namespace WorkReportReminder.UI.Controller
 
         #region Events
 
-        public event EventHandler PostponeReportReminder;
-        public event EventHandler<SaveReportEventArgs> SaveReportData;
+        public event EventHandler PostponeSaving;
+        public event EventHandler<SaveReportEventArgs> Save;
 
         #endregion
 
@@ -37,11 +37,11 @@ namespace WorkReportReminder.UI.Controller
         }
 
         /// <summary>
-        /// Fires PostponeReportReminder event.
+        /// Fires PostponeReportRequest event.
         /// </summary>
-        public void PostponeReport()
+        public void OnSavePostponed()
         {
-            EventHandler temp = PostponeReportReminder;
+            EventHandler temp = PostponeSaving;
             if (temp != null)
             {
                 temp(this, EventArgs.Empty);
@@ -59,16 +59,16 @@ namespace WorkReportReminder.UI.Controller
         }
 
         /// <summary>
-        /// If validation pass fires SaveReport event and hide view, else shows error message.
+        /// If validation pass fires OnReportSaveRequested event and hide view, else shows error message.
         /// </summary>
-        public void SaveReport(string workItemId, string workItemTitle, string workItemComment)
+        public void OnReportSaveRequested(string workItemId, string workItemTitle, string workItemComment)
         {
             try
             {
                 ValidateWorkItemID(workItemId);
                 ValidateWorkItemTitle(workItemTitle);
 
-                EventHandler<SaveReportEventArgs> temp = SaveReportData;
+                EventHandler<SaveReportEventArgs> temp = Save;
                 if (temp != null)
                 {
                     temp(this,

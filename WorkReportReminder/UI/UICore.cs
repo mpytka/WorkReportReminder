@@ -19,8 +19,9 @@ namespace WorkReportReminder.UI
         private ReportReminderViewController _mainViewController;
         private SettingsViewController _settingsViewController;
 
-        public event EventHandler PostponeReportReminder;
-        public event EventHandler<SaveReportEventArgs> SaveReport;
+        public event EventHandler SavePostponeRequested;
+        public event EventHandler<SaveReportEventArgs> ReportSaveRequest;
+        public event EventHandler ApplicationCloseRequest;
 
         public UICore()
         {
@@ -43,16 +44,16 @@ namespace WorkReportReminder.UI
 
         private void HookToMenuActions()
         {
-            CloseMenuItem.Click += CloseMenuItemOnClick;
-            ShowMenuItem.Click += ShowMenuItemOnClick;
-            SettingsMenuItem.Click += SettingsMenuItemOnClick;
+            CloseMenuItem.Click += OnCloseMenuItemClick;
+            ShowMenuItem.Click += OnShowMenuItemClick;
+            SettingsMenuItem.Click += OnSettingsMenuItemClick;
         }
 
         private void InternalInitialise()
         {
             _mainViewController = new ReportReminderViewController();
-            _mainViewController.PostponeReportReminder += OnPostponeReport;
-            _mainViewController.SaveReportData += OnSaveReport;
+            _mainViewController.PostponeSaving += OnReportSavePostponed;
+            _mainViewController.Save += OnReportSaveRequested;
 
             _settingsViewController = new SettingsViewController();
         }
@@ -60,9 +61,9 @@ namespace WorkReportReminder.UI
         /// <summary>
         /// Fired when user want to save a report.
         /// </summary>
-        private void OnSaveReport(object sender, SaveReportEventArgs e)
+        private void OnReportSaveRequested(object sender, SaveReportEventArgs e)
         {
-            EventHandler<SaveReportEventArgs> temp = SaveReport;
+            EventHandler<SaveReportEventArgs> temp = ReportSaveRequest;
             if(temp != null)
             {
                 temp(sender, e);
@@ -72,9 +73,9 @@ namespace WorkReportReminder.UI
         /// <summary>
         /// Fired when user postpone report saving.
         /// </summary>
-        private void OnPostponeReport(object sender, EventArgs e)
+        private void OnReportSavePostponed(object sender, EventArgs e)
         {
-            EventHandler temp = PostponeReportReminder;
+            EventHandler temp = SavePostponeRequested;
             if(temp != null)
             {
                 temp(sender, e);
@@ -90,19 +91,33 @@ namespace WorkReportReminder.UI
 
         #region MenuActions
 
-        private void ShowMenuItemOnClick(object sender, EventArgs eventArgs)
+        /// <summary>
+        /// Fired when user selects "show" from context menu.
+        /// </summary>
+        private void OnShowMenuItemClick(object sender, EventArgs eventArgs)
         {
             _mainViewController.Show();
         }
 
-        private void CloseMenuItemOnClick(object sender, EventArgs eventArgs)
+        /// <summary>
+        /// Fired when user selects "close" from context menu.
+        /// </summary>
+        private void OnCloseMenuItemClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            EventHandler temp = ApplicationCloseRequest;
+            if(temp != null)
+            {
+                temp(sender, e);
+            }
         }
 
-        private void SettingsMenuItemOnClick(object sender, EventArgs eventArgs)
+        /// <summary>
+        /// Fired when user selects "settings" from context menu.
+        /// </summary>
+        private void OnSettingsMenuItemClick(object sender, EventArgs eventArgs)
         {
-            _settingsViewController.Show();
+            //settings are not supported at the moment.
+            //_settingsViewController.Show();
         }
 
         #endregion
