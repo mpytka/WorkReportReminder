@@ -19,11 +19,11 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified date.
         /// </summary>
-        List<WorkItem> Read(DateTime date);
+        WorkItemsList Read(DateTime date);
 
         /// <summary>
         /// Reads work items data from specified file.
         /// </summary>
-        List<WorkItem> Read(string fileName);
+        WorkItemsList Read(string fileName);
     }
 }

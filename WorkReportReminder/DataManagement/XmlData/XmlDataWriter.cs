@@ -56,7 +56,7 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Updates end time of previous work item.
         /// </summary>
-        private static void UpdatePreviousItemEndTime(DateTime time, List<WorkItem> allWorkItemsData)
+        private static void UpdatePreviousItemEndTime(DateTime time, WorkItemsList allWorkItemsData)
         {
             if (allWorkItemsData.Count > 1)
             {
@@ -70,7 +70,7 @@ namespace WorkReportReminder.DataManagement
         /// Search in list for item with the same id and title as specified one.
         /// Returns null if does not find matching item.
         /// </summary>
-        private WorkItem FindWorkItem(WorkItemDto item, List<WorkItem> allItems)
+        private WorkItem FindWorkItem(WorkItemDto item, WorkItemsList allItems)
         {
             var workItem = allItems.Find(wi => wi.Id == item.Id && wi.Title == item.Title);
             return workItem;
@@ -79,7 +79,7 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Update file, using data of all existing work items.
         /// </summary>
-        private static void UpdateReportFile(string filePath, IEnumerable<WorkItem> workItemsData)
+        private static void UpdateReportFile(string filePath, WorkItemsList workItemsData)
         {
             var workItemsDocument = new XDocument(
                 new XElement(XmlElements.WorkItems.ToString(),

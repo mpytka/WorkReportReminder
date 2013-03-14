@@ -38,7 +38,7 @@ namespace WorkReportReminder.UI.Layout
             SortByTitle(_controller.PullData());
         }
 
-        private void SortByTitle(ReadOnlyCollection<WorkItem> workItems)
+        private void SortByTitle(WorkItemsList workItems)
         {
             Clear();
             workItems.Reverse();

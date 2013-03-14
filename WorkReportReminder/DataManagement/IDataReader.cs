@@ -11,19 +11,19 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified file.
         /// </summary>
-        List<WorkItem> ReadAllItems(string filePath);
+        WorkItemsList ReadAllItems(string filePath);
 
         /// <summary>
         /// Reads work items data from specified file and date.
         /// </summary>
-        List<WorkItem> ReadAllItems(string filePath, DateTime date);
+        WorkItemsList ReadAllItems(string filePath, DateTime date);
 
         /// <summary>
         /// Reads all work items from file that match to time range.
         /// Each work item in file has start and end time.
         /// It will reads all items that has at least one date in specified range.
         /// </summary>
-        List<WorkItem> ReadItemsFromRangeOfTime(string filePath, DateTime begining, DateTime end);
+        WorkItemsList ReadItemsFromRangeOfTime(string filePath, DateTime begining, DateTime end);
 
         /// <summary>
         /// Reads data of last (newest) item from specified file.

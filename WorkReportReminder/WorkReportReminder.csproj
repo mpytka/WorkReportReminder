@@ -81,6 +81,7 @@
     <Compile Include="DataManagement\IDataReader.cs" />
     <Compile Include="DataManagement\IDataWriter.cs" />
     <Compile Include="DataManagement\WorkItem.cs" />
+    <Compile Include="DataManagement\WorkItemsList.cs" />
     <Compile Include="DataManagement\XmlData\XMLDataManager.cs" />
     <Compile Include="DataManagement\XmlData\XmlDataReader.cs" />
     <Compile Include="DataManagement\XmlData\XmlDataWriter.cs" />
