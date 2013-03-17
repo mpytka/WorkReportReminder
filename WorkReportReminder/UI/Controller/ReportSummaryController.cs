@@ -15,6 +15,11 @@ namespace WorkReportReminder.UI.Controller
 
         public ReportSummaryController()
         {
+            InitialiseView();
+        }
+
+        private void InitialiseView()
+        {
             _view = new ReportSummary(this);
         }
 
@@ -34,6 +39,11 @@ namespace WorkReportReminder.UI.Controller
 
         public void Show()
         {
+            if (_view == null)
+            {
+                InitialiseView();
+            }
+
             _view.Show();
         }
 

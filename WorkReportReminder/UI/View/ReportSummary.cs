@@ -12,7 +12,20 @@ namespace WorkReportReminder.UI.Layout
         private ReportSummaryController _controller;
         private const string DateFormat = "dd.MM.yy";
         private const string TimeFormat = "HH:mm";
-        
+
+        private void InitialiseTreeView()
+        {
+            treeListView.CanExpandGetter = delegate(object wi)
+            {
+                var workItem = (wi as WorkItem);
+                return (workItem != null && workItem.Comments.Count > 0);
+            };
+
+            treeListView.ChildrenGetter = delegate(object wi)
+            {
+                return (wi as WorkItem).Comments;
+            };
+        }
 
         public ReportSummary(ReportSummaryController controller)
         {
@@ -50,8 +63,9 @@ namespace WorkReportReminder.UI.Layout
                     treeNode.Nodes.Add(string.Format("[{0}] [{1}] - {2}",FormatDate(comment.Time), FormatTime(comment.Time), comment.Content));
                 }
 
-                treeView.Nodes.Add(treeNode);
             }
+
+            treeListView.Roots = workItems;
         }
 
         private void SortByDate(ReadOnlyCollection<WorkItem> workItems)
@@ -68,7 +82,6 @@ namespace WorkReportReminder.UI.Layout
         /// </summary>
         public void Clear()
         {
-            treeView.Nodes.Clear();
         }
 
         public void Show()
