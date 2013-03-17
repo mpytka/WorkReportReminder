@@ -44,7 +44,7 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified date.
         /// </summary>
-        public List<WorkItem> Read(DateTime date)
+        public WorkItemsList Read(DateTime date)
         {
             return _reader.ReadAllItems(_readableFilePath, date);
         }
@@ -52,7 +52,7 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified file.
         /// </summary>
-        public List<WorkItem> Read(string fileName)
+        public WorkItemsList Read(string fileName)
         {
             return _reader.ReadAllItems(fileName);
         }

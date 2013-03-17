@@ -60,7 +60,7 @@ namespace WorkReportReminder.Common
         /// <summary>
         /// Formats and returns whole call stact with specified message at the end;
         /// </summary>
-        private string FormatOutputDataWithCallStact(string message)
+        private string FormatOutputDataWithCallStack(string message)
         {
             string CALL_STACK = "Call Stack:";
             char NEW_LINE = '\n';
@@ -114,7 +114,7 @@ namespace WorkReportReminder.Common
         {
             if (m_logger.IsFatalEnabled)
             {
-                m_logger.Fatal(FormatOutputDataWithCallStact(message));
+                m_logger.Fatal(FormatOutputDataWithCallStack(message));
             }
         }
     }

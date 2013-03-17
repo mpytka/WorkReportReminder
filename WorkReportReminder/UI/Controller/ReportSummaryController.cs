@@ -9,7 +9,7 @@ namespace WorkReportReminder.UI.Controller
     public class ReportSummaryController
     {
         private IReportSummaryView _view;
-        private List<WorkItem> _summaryData; 
+        private WorkItemsList _summaryData; 
 
         public event EventHandler<DataRequestEventArgs> DataRequested;
 
@@ -32,7 +32,7 @@ namespace WorkReportReminder.UI.Controller
             }
         }
 
-        public void UpdateData(List<WorkItem> workItems)
+        public void UpdateData(WorkItemsList workItems)
         {
             _summaryData = workItems;
         }
@@ -47,9 +47,9 @@ namespace WorkReportReminder.UI.Controller
             _view.Show();
         }
 
-        public ReadOnlyCollection<WorkItem> PullData()
+        public WorkItemsList PullData()
         {
-            return _summaryData.AsReadOnly();
+            return _summaryData;
         }
     }
 }

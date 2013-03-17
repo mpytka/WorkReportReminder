@@ -14,10 +14,9 @@ namespace WorkReportReminder.DataManagement
         /// <summary>
         /// Reads work items data from specified file.
         /// </summary>
-        public List<WorkItem> ReadAllItems(string filePath)
+        public WorkItemsList ReadAllItems(string filePath)
         {
-            Log.Instance.Info("Reading all items");
-            var fileData = new List<WorkItem>(0);
+            IEnumerable<WorkItem> fileData = new List<WorkItem>();
             var file = new FileInfo(filePath);
             if (file.Exists)
             {
@@ -44,42 +43,36 @@ namespace WorkReportReminder.DataManagement
                                            )
                                    ).ToList<WorkItem>();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
-                        Log.Instance.Error("Reading file unsuccessful"+e.Message);
+                        Log.Instance.Error("Reading file unsuccessful" + e.Message);
                     }
                 }
             }
 
-            Log.Instance.Info(string.Format("Loaded {0} items", fileData.Count));
-            return fileData;
+            WorkItemsList workItemsData = new WorkItemsList(fileData);
+            Log.Instance.Info(string.Format("Loaded {0} items", workItemsData.Count));
+            return workItemsData;
         }
 
         /// <summary>
         /// Reads work items data from specified file and date.
         /// </summary>
-        public List<WorkItem> ReadAllItems(string filePath, DateTime date)
+        public WorkItemsList ReadAllItems(string filePath, DateTime date)
         {
-            throw new NotImplementedException();
+            return ReadAllItems(filePath).Filter(date, date);
         }
 
-        public List<WorkItem> ReadItemsFromRangeOfTime(string filePath, DateTime begining, DateTime end)
+        public WorkItemsList ReadItemsFromRangeOfTime(string filePath, DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return ReadAllItems(filePath).Filter(start, end);
         }
 
         public WorkItem ReadLastItem(string filePath)
         {
             //TODO: only temporarly, it can be done better with linq
             var allItems = ReadAllItems(filePath);
-            if (allItems.Count > 0)
-            {
-                return allItems[allItems.Count - 1];
-            }
-            else
-            {
-                return WorkItem.Empty;
-            }
+            return allItems[allItems.Count - 1];
         }
 
         #endregion

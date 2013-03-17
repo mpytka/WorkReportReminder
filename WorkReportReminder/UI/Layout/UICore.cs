@@ -129,7 +129,7 @@ namespace WorkReportReminder.UI
 
         #endregion
 
-        public void UpdateSummaryData(List<WorkItem> workItems)
+        public void UpdateSummaryData(WorkItemsList workItems)
         {
             _reportSummary.UpdateData(workItems);
         }
