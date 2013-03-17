@@ -67,7 +67,16 @@ namespace WorkReportReminder.DataManagement
 
         public WorkItem this[int index]
         {
-            get { return m_collection[index]; }
+            get {
+                if (m_collection.Count == 0 || index < 0)
+                {
+                    return WorkItem.Empty;
+                }
+                else
+                {
+                    return m_collection[index];
+                }
+            }
             set { m_collection[index] = value; }
         }
 

@@ -42,7 +42,6 @@ namespace WorkReportReminder.DataManagement
                                                 )).ToList<WorkItemComment>()
                                            )
                                    ).ToList<WorkItem>();
-
                     }
                     catch (Exception e)
                     {
@@ -50,6 +49,7 @@ namespace WorkReportReminder.DataManagement
                     }
                 }
             }
+
             WorkItemsList workItemsData = new WorkItemsList(fileData);
             Log.Instance.Info(string.Format("Loaded {0} items", workItemsData.Count));
             return workItemsData;
@@ -72,14 +72,7 @@ namespace WorkReportReminder.DataManagement
         {
             //TODO: only temporarly, it can be done better with linq
             var allItems = ReadAllItems(filePath);
-            if (allItems.Count > 0)
-            {
-                return allItems[allItems.Count - 1];
-            }
-            else
-            {
-                return WorkItem.Empty;
-            }
+            return allItems[allItems.Count - 1];
         }
 
         #endregion
