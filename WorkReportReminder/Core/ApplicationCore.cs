@@ -53,7 +53,7 @@ namespace WorkReportReminder.Core
             _uiCore.DataRequest += OnDataRequested;
 
             var item = _dataManager.ReadLastItem();
-            _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Content, item.EndTime));
+            _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Title, item.EndTime));
 
             _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
             _timeGuard.StartTimer();

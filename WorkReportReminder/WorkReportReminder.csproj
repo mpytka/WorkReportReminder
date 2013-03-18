@@ -100,10 +100,10 @@
     <Compile Include="Common\ITimeGuard.cs" />
     <Compile Include="TimeManagement\TimeGuard.cs" />
     <Compile Include="Common\DataRequestEventArgs.cs" />
-    <Compile Include="UI\IReportSummaryView.cs" />
+    <Compile Include="UI\Common\IReportSummaryView.cs" />
     <Compile Include="UI\Controller\ReportSummaryController.cs" />
     <Compile Include="UI\Controller\SettingsViewController.cs" />
-    <Compile Include="UI\IReportReminderView.cs" />
+    <Compile Include="UI\Common\IReportReminderView.cs" />
     <Compile Include="UI\View\ReportSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +128,9 @@
     <Compile Include="UI\View\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\View\SummaryHelpers\DurationCalculator.cs" />
+    <Compile Include="UI\View\SummaryHelpers\DurationFormatTypes.cs" />
+    <Compile Include="UI\View\SummaryHelpers\TreeViewHelper.cs" />
     <EmbeddedResource Include="UI\View\ReportSummary.resx">
       <DependentUpon>ReportSummary.cs</DependentUpon>
     </EmbeddedResource>

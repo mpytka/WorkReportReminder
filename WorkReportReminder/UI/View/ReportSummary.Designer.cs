@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WorkReportReminder.DataManagement;
 
-namespace WorkReportReminder.UI.Layout
+namespace WorkReportReminder.UI
 {
     partial class ReportSummary
     {
@@ -39,19 +39,22 @@ namespace WorkReportReminder.UI.Layout
             this.dateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeListView = new BrightIdeasSoftware.TreeListView();
+            this.TreeListView = new BrightIdeasSoftware.TreeListView();
             this.titleColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.startDateColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.endDateColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.DurationColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.StartDateColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.EndDateColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.TagColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.IdColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeListView)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip
             // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 251);
+            this.statusStrip.Location = new System.Drawing.Point(0, 222);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(292, 22);
+            this.statusStrip.Size = new System.Drawing.Size(686, 22);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -62,7 +65,7 @@ namespace WorkReportReminder.UI.Layout
             this.sortToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(292, 24);
+            this.menuStrip.Size = new System.Drawing.Size(686, 24);
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -109,49 +112,80 @@ namespace WorkReportReminder.UI.Layout
             this.titleToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.titleToolStripMenuItem.Text = "Title";
             // 
-            // treeListView
+            // TreeListView
             // 
-            this.treeListView.AllColumns.Add(this.titleColumn);
-            this.treeListView.AllColumns.Add(this.startDateColumn);
-            this.treeListView.AllColumns.Add(this.endDateColumn);
-            this.treeListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TreeListView.AllColumns.Add(this.titleColumn);
+            this.TreeListView.AllColumns.Add(this.DurationColumn);
+            this.TreeListView.AllColumns.Add(this.StartDateColumn);
+            this.TreeListView.AllColumns.Add(this.EndDateColumn);
+            this.TreeListView.AllColumns.Add(this.TagColumn);
+            this.TreeListView.AllColumns.Add(this.IdColumn);
+            this.TreeListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TreeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.titleColumn,
-            this.startDateColumn,
-            this.endDateColumn});
-            this.treeListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeListView.Location = new System.Drawing.Point(0, 24);
-            this.treeListView.Name = "treeListView";
-            this.treeListView.OwnerDraw = true;
-            this.treeListView.ShowGroups = false;
-            this.treeListView.Size = new System.Drawing.Size(292, 227);
-            this.treeListView.TabIndex = 3;
-            this.treeListView.UseCompatibleStateImageBehavior = false;
-            this.treeListView.View = System.Windows.Forms.View.Details;
-            this.treeListView.VirtualMode = true;
+            this.DurationColumn,
+            this.StartDateColumn,
+            this.EndDateColumn,
+            this.TagColumn,
+            this.IdColumn});
+            this.TreeListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TreeListView.HeaderWordWrap = true;
+            this.TreeListView.Location = new System.Drawing.Point(0, 24);
+            this.TreeListView.Name = "TreeListView";
+            this.TreeListView.OwnerDraw = true;
+            this.TreeListView.ShowGroups = false;
+            this.TreeListView.Size = new System.Drawing.Size(686, 198);
+            this.TreeListView.TabIndex = 3;
+            this.TreeListView.UseAlternatingBackColors = true;
+            this.TreeListView.UseCompatibleStateImageBehavior = false;
+            this.TreeListView.View = System.Windows.Forms.View.Details;
+            this.TreeListView.VirtualMode = true;
             // 
             // titleColumn
             // 
             this.titleColumn.AspectName = "Title";
+            this.titleColumn.DisplayIndex = 1;
             this.titleColumn.Text = "Title";
+            this.titleColumn.Width = 300;
             // 
-            // startDateColumn
+            // DurationColumn
             // 
-            this.startDateColumn.AspectName = "StartTime";
-            this.startDateColumn.Text = "Start Date";
+            this.DurationColumn.AspectName = "";
+            this.DurationColumn.DisplayIndex = 2;
+            this.DurationColumn.Text = "Duration";
+            this.DurationColumn.Width = 40;
             // 
-            // endDateColumn
+            // StartDateColumn
             // 
-            this.endDateColumn.AspectName = "EndTime";
-            this.endDateColumn.Text = "End Date";
+            this.StartDateColumn.AspectName = "StartTime";
+            this.StartDateColumn.DisplayIndex = 3;
+            this.StartDateColumn.Text = "Start Date";
+            this.StartDateColumn.Width = 100;
+            // 
+            // EndDateColumn
+            // 
+            this.EndDateColumn.AspectName = "EndTime";
+            this.EndDateColumn.DisplayIndex = 4;
+            this.EndDateColumn.Text = "End Date";
+            this.EndDateColumn.Width = 100;
+            // 
+            // TagColumn
+            // 
+            this.TagColumn.DisplayIndex = 0;
+            this.TagColumn.Text = "Tag";
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.Text = "ID";
             // 
             // ReportSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(292, 273);
-            this.Controls.Add(this.treeListView);
+            this.ClientSize = new System.Drawing.Size(686, 244);
+            this.Controls.Add(this.TreeListView);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -160,7 +194,7 @@ namespace WorkReportReminder.UI.Layout
             this.Text = "ReportSummary";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,9 +210,12 @@ namespace WorkReportReminder.UI.Layout
         private System.Windows.Forms.ToolStripMenuItem idToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem titleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
-        private BrightIdeasSoftware.TreeListView treeListView;
+        public BrightIdeasSoftware.TreeListView TreeListView;
         private BrightIdeasSoftware.OLVColumn titleColumn;
-        private BrightIdeasSoftware.OLVColumn startDateColumn;
-        private BrightIdeasSoftware.OLVColumn endDateColumn;
+        public BrightIdeasSoftware.OLVColumn StartDateColumn;
+        public BrightIdeasSoftware.OLVColumn EndDateColumn;
+        public BrightIdeasSoftware.OLVColumn DurationColumn;
+        public BrightIdeasSoftware.OLVColumn TagColumn;
+        public BrightIdeasSoftware.OLVColumn IdColumn;
     }
 }

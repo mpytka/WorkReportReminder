@@ -8,11 +8,11 @@ namespace WorkReportReminder.DataManagement
     public class WorkItemComment
     {
         public DateTime Time { get; private set; }
-        public string Content { get; private set; }
+        public string Title { get; private set; }
 
         public WorkItemComment(string content, DateTime time)
         {
-            Content = content;
+            Title = content;
             Time = time;
         }
     }

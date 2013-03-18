@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using WorkReportReminder.DataManagement;
-using WorkReportReminder.UI.Layout;
 
 namespace WorkReportReminder.UI.Controller
 {

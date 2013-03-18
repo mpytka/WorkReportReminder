@@ -89,7 +89,7 @@ namespace WorkReportReminder.DataManagement
                                  new XElement(XmlElements.Id.ToString(), workItem.Id),
                                  new XElement(XmlElements.Title.ToString(), workItem.Title),
                                  from comment in workItem.Comments
-                                     select new XElement(XmlElements.Comment.ToString(), new XAttribute(XmlElements.Time.ToString(), comment.Time), comment.Content),
+                                     select new XElement(XmlElements.Comment.ToString(), new XAttribute(XmlElements.Time.ToString(), comment.Time), comment.Title),
                                  new XElement(XmlElements.StartTime.ToString(), workItem.StartTime),
                                  new XElement(XmlElements.EndTime.ToString(), workItem.EndTime)
                                  )
