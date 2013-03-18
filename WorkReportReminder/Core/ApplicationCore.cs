@@ -53,6 +53,7 @@ namespace WorkReportReminder.Core
             _uiCore.SavePostponeRequested += OnSavePostponeReport;
             _uiCore.ReportSaveRequest += OnReportSaveRequest;
             _uiCore.ApplicationCloseRequest += OnCloseRequested;
+            _uiCore.DataRequest += OnDataRequested;
 
             var item = _dataManager.ReadLastItem();
             _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Title, item.EndTime));
