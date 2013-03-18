@@ -96,7 +96,7 @@ namespace WorkReportReminder.UI.View.SummaryHelpers
         /// <summary>
         /// Defines what should be displayed in Tag column.
         /// </summary>
-        public void InitialiseTagColumn(char tagSign)
+        public void InitialiseTagColumn()
         {
             _view.TagColumn.AspectGetter =
                 (obj) =>
