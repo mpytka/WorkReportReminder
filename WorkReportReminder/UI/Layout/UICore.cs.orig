@@ -22,10 +22,15 @@ namespace WorkReportReminder.UI
         private SettingsViewController _settingsViewController;
         private ReportSummaryController _reportSummary;
 
+<<<<<<< HEAD:WorkReportReminder/UI/Layout/UICore.cs
+        public event EventHandler PostponeReportReminder;
+        public event EventHandler<SaveReportEventArgs> SaveReport;
+        public event EventHandler<DataRequestEventArgs> DataRequest;
+=======
         public event EventHandler SavePostponeRequested;
         public event EventHandler<SaveReportEventArgs> ReportSaveRequest;
-        public event EventHandler<DataRequestEventArgs> DataRequest;
         public event EventHandler ApplicationCloseRequest;
+>>>>>>> master:WorkReportReminder/UI/UICore.cs
 
         public UICore()
         {
@@ -48,10 +53,16 @@ namespace WorkReportReminder.UI
 
         private void HookToMenuActions()
         {
+<<<<<<< HEAD:WorkReportReminder/UI/Layout/UICore.cs
+            CloseMenuItem.Click += CloseMenuItemOnClick;
+            ShowMenuItem.Click += ShowMenuItemOnClick;
+            SettingsMenuItem.Click += SettingsMenuItemOnClick;
+            ShowSummaryMenuItem.Click += ShowSummaryMenuItemClick;
+=======
             CloseMenuItem.Click += OnCloseMenuItemClick;
             ShowMenuItem.Click += OnShowMenuItemClick;
             SettingsMenuItem.Click += OnSettingsMenuItemClick;
-            ShowSummaryMenuItem.Click += ShowSummaryMenuItemClick;
+>>>>>>> master:WorkReportReminder/UI/UICore.cs
         }
 
         private void InternalInitialise()

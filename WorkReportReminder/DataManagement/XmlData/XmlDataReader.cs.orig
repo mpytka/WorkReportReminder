@@ -16,7 +16,12 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         public WorkItemsList ReadAllItems(string filePath)
         {
+<<<<<<< HEAD
             IEnumerable<WorkItem> fileData = new List<WorkItem>();
+=======
+            Log.Instance.Info("Reading all items");
+            var fileData = new List<WorkItem>(0);
+>>>>>>> master
             var file = new FileInfo(filePath);
             if (file.Exists)
             {
@@ -43,16 +48,27 @@ namespace WorkReportReminder.DataManagement
                                            )
                                    ).ToList<WorkItem>();
                     }
+<<<<<<< HEAD
+                    catch (Exception e)
+                    {
+                        Log.Instance.Error("Reading file unsuccessful" + e.Message);
+=======
                     catch(Exception e)
                     {
                         Log.Instance.Error("Reading file unsuccessful"+e.Message);
+>>>>>>> master
                     }
                 }
             }
 
+<<<<<<< HEAD
             WorkItemsList workItemsData = new WorkItemsList(fileData);
             Log.Instance.Info(string.Format("Loaded {0} items", workItemsData.Count));
             return workItemsData;
+=======
+            Log.Instance.Info(string.Format("Loaded {0} items", fileData.Count));
+            return fileData;
+>>>>>>> master
         }
 
         /// <summary>

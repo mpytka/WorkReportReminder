@@ -53,7 +53,7 @@ namespace WorkReportReminder.UI
             this.NotificationIcon.Text = "WorkReportReminder";
             this.NotificationIcon.Visible = true;
             this.NotificationIcon.ContextMenuStrip = this.IconContextMenuStrip;
-            this.NotificationIcon.DoubleClick += new System.EventHandler(this.NotificationIcon_DoubleClick);
+            this.NotificationIcon.DoubleClick += new System.EventHandler(this.OnNotificationIconDoubleClick);
             // 
             // IconContextMenuStrip
             // 

@@ -89,14 +89,14 @@ namespace WorkReportReminder
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            _viewController.SaveReport(idTextBox.Text, titleTextBox.Text, commentTextBox.Text);
+            _viewController.OnReportSaveRequested(idTextBox.Text, titleTextBox.Text, commentTextBox.Text);
         }
 
         #endregion
 
         private void PostponeButton_Click(object sender, EventArgs e)
         {
-            _viewController.PostponeReport();
+            _viewController.OnSavePostponed();
         }
     }
 }

@@ -50,10 +50,16 @@ namespace WorkReportReminder.Core
             _dataManager = _applicationInitialiser.InitialiseDataManager();
 
             _uiCore = _applicationInitialiser.InitialiseUICore();
+<<<<<<< HEAD
+            _uiCore.PostponeReportReminder += OnPostponeReport;
+            _uiCore.SaveReport += OnSaveReport;
+            _uiCore.DataRequest += OnDataRequested;
+
+=======
             _uiCore.SavePostponeRequested += OnSavePostponeReport;
             _uiCore.ReportSaveRequest += OnReportSaveRequest;
             _uiCore.ApplicationCloseRequest += OnCloseRequested;
-
+>>>>>>> master
             var item = _dataManager.ReadLastItem();
             _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Title, item.EndTime));
 
@@ -64,12 +70,15 @@ namespace WorkReportReminder.Core
             Log.Instance.Info("Initialisation completed.");
         }
 
+<<<<<<< HEAD
         private void OnDataRequested(object sender, DataRequestEventArgs e)
         {
             var workItems = _dataManager.Read(e.FileName);
             _uiCore.UpdateSummaryData(workItems);
         }
 
+        private void OnSaveReport(object sender, SaveReportEventArgs e)
+=======
         private void OnCloseRequested(object sender, EventArgs e)
         {
             EventHandler temp = Close;
@@ -80,6 +89,7 @@ namespace WorkReportReminder.Core
         }
 
         private void OnReportSaveRequest(object sender, SaveReportEventArgs e)
+>>>>>>> master
         {
             _timeGuard.ResetTimer();
             _dataManager.Write(e.WorkItemData);

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkReportReminder", "WorkReportReminder\WorkReportReminder.csproj", "{04EB538F-064F-46B9-BAFF-699FC5123D1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,16 @@ Global
 		{04EB538F-064F-46B9-BAFF-699FC5123D1C}.Release|Mixed Platforms.Build.0 = Release|x86
 		{04EB538F-064F-46B9-BAFF-699FC5123D1C}.Release|x86.ActiveCfg = Release|x86
 		{04EB538F-064F-46B9-BAFF-699FC5123D1C}.Release|x86.Build.0 = Release|x86
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9ABCE756-460A-41D1-A4F9-064C6B41DCA0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
