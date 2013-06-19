@@ -46,8 +46,14 @@ namespace WorkReportReminder.DataManagement
             else
             {
                 Log.Instance.Info("Updating existing item");
-                workItem.AddComment(singleWorkItemData.Comment, singleWorkItemData.Time);
-                workItem.UpdateEndTime(singleWorkItemData.Time);
+                if (workItem.LastComment.Title == singleWorkItemData.Comment)
+                {
+                    workItem.LastComment.SetEndTime(singleWorkItemData.Time);
+                }
+                else
+                {
+                    workItem.AddComment(singleWorkItemData.Comment, singleWorkItemData.Time);
+                }
             }
 
             UpdateReportFile(filePath, allWorkItemsData);
@@ -58,10 +64,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         private static void UpdatePreviousItemEndTime(DateTime time, WorkItemsList allWorkItemsData)
         {
-            if (allWorkItemsData.Count > 1)
-            {
-                allWorkItemsData[allWorkItemsData.Count - 2].UpdateEndTime(time);
-            }
+            allWorkItemsData.LastItem.LastComment.SetEndTime(time);
         }
 
         #endregion
@@ -85,16 +88,18 @@ namespace WorkReportReminder.DataManagement
                 new XElement(XmlElements.WorkItems.ToString(),
                              from workItem in workItemsData
                              select new XElement(
-                                 XmlElements.WorkItem.ToString(),
-                                 new XElement(XmlElements.Id.ToString(), workItem.Id),
-                                 new XElement(XmlElements.Title.ToString(), workItem.Title),
+                                 XmlElements.WorkItem,
+                                 new XElement(XmlElements.Id, workItem.Id),
+                                 new XElement(XmlElements.Title, workItem.Title),
                                  from comment in workItem.Comments
-                                     select new XElement(XmlElements.Comment.ToString(), new XAttribute(XmlElements.Time.ToString(), comment.Time), comment.Title),
-                                 new XElement(XmlElements.StartTime.ToString(), workItem.StartTime),
-                                 new XElement(XmlElements.EndTime.ToString(), workItem.EndTime)
+                                     select new XElement(XmlElements.Comment, 
+                                         new XAttribute(XmlElements.StartTime, comment.StartTime), 
+                                         new XAttribute(XmlElements.EndTime, comment.EndTime), 
+                                         comment.Title
                                  )
                     )
-                );
+                )
+            );
 
             workItemsDocument.Save(filePath);
         }
@@ -104,7 +109,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         private void CreateOutputFile(string filePath)
         {
-            Log.Instance.Info("New work items file created.");
+            Log.Instance.Info("New output file created.");
             var newXml = new XDocument(
                 new XElement(XmlElements.WorkItems.ToString()));
             newXml.Save(filePath, SaveOptions.None);

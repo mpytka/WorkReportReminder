@@ -34,35 +34,57 @@ namespace WorkReportReminder.Core
 
         public ApplicationCore()
         {
-            Initialise();
-        }
-
-        private void Initialise()
-        {
+            ///creates logger service - it have to be the first thing we do
             var logger = new Logger();
             logger.Configure(true);
             Log.Initialise(logger);
 
-            Log.Instance.Info(string.Format("\r\nAppName: {0} \r\nAppVersion: {1}", ApplicationInfo.Name, ApplicationInfo.Version));
-
             var config = new ConfigurationManager();
             _applicationInitialiser = new ApplicationInitialiser(config);
-            _dataManager = _applicationInitialiser.InitialiseDataManager();
 
+            Initialise();
+        }
+
+        /// <summary>
+        /// Initialises core services.
+        /// </summary>
+        private void Initialise()
+        {
+            Log.Instance.Info(string.Format("\r\nAppName: {0} \r\nAppVersion: {1}", ApplicationInfo.Name, ApplicationInfo.Version));
+
+            _dataManager = _applicationInitialiser.InitialiseDataManager();
             _uiCore = _applicationInitialiser.InitialiseUICore();
+            _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
+            
+            _timeGuard.StartTimer();
+
+            HookUpToEvents();
+            FillFormWithInitialData();
+
+            Log.Instance.Info("Initialisation completed.");
+        }
+
+        /// <summary>
+        /// Hooks up to events.
+        /// </summary>
+        private void HookUpToEvents()
+        {
             _uiCore.SavePostponeRequested += OnSavePostponeReport;
             _uiCore.ReportSaveRequest += OnReportSaveRequest;
             _uiCore.ApplicationCloseRequest += OnCloseRequested;
             _uiCore.DataRequest += OnDataRequested;
 
-            var item = _dataManager.ReadLastItem();
-            _uiCore.InitialiseViewData(new WorkItemDto(item.Id, item.Title, item.Comments[item.Comments.Count - 1].Title, item.EndTime));
-
-            _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
-            _timeGuard.StartTimer();
             _timeGuard.TimerRaised += OnTimerRaised;
+        }
 
-            Log.Instance.Info("Initialisation completed.");
+        /// <summary>
+        /// Fills layout with data of last entered/used work item.
+        /// </summary>
+        private void FillFormWithInitialData()
+        {
+            var lastUsedWorkItem = _dataManager.ReadLastItem();
+            var workItemDto = new WorkItemDto(lastUsedWorkItem.Id, lastUsedWorkItem.Title, lastUsedWorkItem.LastComment.Title, lastUsedWorkItem.LastComment.EndTime);
+            _uiCore.InitialiseViewData(workItemDto);
         }
 
         private void OnDataRequested(object sender, DataRequestEventArgs e)

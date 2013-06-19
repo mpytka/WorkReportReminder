@@ -51,11 +51,12 @@ namespace WorkReportReminder.UI.View.SummaryHelpers
                 {
                     if (obj is WorkItem)
                     {
-                        return (obj as WorkItem).StartTime.ToString(dateFormat);
+                        return (obj as WorkItem).FirstComment.StartTime.ToString(dateFormat);
                     }
+
                     if (obj is WorkItemComment)
                     {
-                        return (obj as WorkItemComment).Time.ToString(dateFormat);
+                        return (obj as WorkItemComment).StartTime.ToString(dateFormat);
                     }
 
                     return string.Empty;
@@ -64,10 +65,14 @@ namespace WorkReportReminder.UI.View.SummaryHelpers
             _view.EndDateColumn.AspectGetter =
                 (obj) =>
                 {
-                    var workItem = (obj as WorkItem);
-                    if (workItem != null)
+                    if (obj is WorkItem)
                     {
-                        return workItem.EndTime.ToString(dateFormat);
+                        return (obj as WorkItem).LastComment.EndTime.ToString(dateFormat);
+                    }
+
+                    if (obj is WorkItemComment)
+                    {
+                        return (obj as WorkItemComment).EndTime.ToString(dateFormat);
                     }
 
                     return string.Empty;
@@ -87,8 +92,15 @@ namespace WorkReportReminder.UI.View.SummaryHelpers
                     var workItem = (obj as WorkItem);
                     if (workItem != null)
                     {
-                        return _durationCalculator.Calculate(workItem.StartTime, workItem.EndTime, durationFormat);
+                        int duration = 0;
+                        foreach (var comment in workItem.Comments)
+                        {
+                            duration += _durationCalculator.Calculate(comment.StartTime, comment.EndTime, durationFormat);
+                        }
+
+                        return duration;
                     }
+
                     return string.Empty;
                 };
         }

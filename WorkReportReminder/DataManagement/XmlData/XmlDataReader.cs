@@ -27,18 +27,17 @@ namespace WorkReportReminder.DataManagement
                     try
                     {
                         fileData = (
-                                       from workItem in workItemsDocument.Root.Elements(XmlElements.WorkItem.ToString())
+                                       from workItem in workItemsDocument.Root.Elements(XmlElements.WorkItem)
                                        select new WorkItem
                                            (
-                                           int.Parse(workItem.Element(XmlElements.Id.ToString()).Value),
-                                           workItem.Element(XmlElements.Title.ToString()).Value,
-                                           DateTime.Parse(workItem.Element(XmlElements.StartTime.ToString()).Value),
-                                           DateTime.Parse(workItem.Element(XmlElements.EndTime.ToString()).Value),
+                                           int.Parse(workItem.Element(XmlElements.Id).Value),
+                                           workItem.Element(XmlElements.Title).Value,
                                            //reads a list of comments
-                                           (from comment in workItem.Elements(XmlElements.Comment.ToString())
+                                           (from comment in workItem.Elements(XmlElements.Comment)
                                             select new WorkItemComment(
                                                 comment.Value,
-                                                DateTime.Parse(comment.Attribute(XmlElements.Time.ToString()).Value)
+                                                DateTime.Parse(comment.Attribute(XmlElements.StartTime).Value),
+                                                DateTime.Parse(comment.Attribute(XmlElements.EndTime).Value)
                                                 )).ToList<WorkItemComment>()
                                            )
                                    ).ToList<WorkItem>();

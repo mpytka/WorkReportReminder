@@ -7,13 +7,24 @@ namespace WorkReportReminder.DataManagement
     /// </summary>
     public class WorkItemComment
     {
-        public DateTime Time { get; private set; }
+        public DateTime StartTime { get; private set; }
+        public DateTime EndTime { get; private set; }
         public string Title { get; private set; }
 
-        public WorkItemComment(string content, DateTime time)
+        public WorkItemComment(string content, DateTime startTime):this(content, startTime, startTime)
+        {
+        }
+
+        public WorkItemComment(string content, DateTime startTime, DateTime endTime)
         {
             Title = content;
-            Time = time;
+            StartTime = startTime;
+            EndTime = endTime;
+        }
+
+        public void SetEndTime(DateTime endTime)
+        {
+            EndTime = endTime;
         }
     }
 }

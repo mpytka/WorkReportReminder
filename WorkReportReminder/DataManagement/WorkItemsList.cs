@@ -31,7 +31,14 @@ namespace WorkReportReminder.DataManagement
 
         public WorkItemsList Filter(DateTime startTime, DateTime endTime)
         {
-            m_collection = m_collection.Where(item => item.StartTime >= startTime && item.EndTime <= endTime).ToList();
+            var m_temporaryCollection = new List<WorkItem>(m_collection.Count);
+            foreach (var wi in m_collection)
+            {
+                if (wi.FirstComment.StartTime >= startTime && wi.LastComment.EndTime <= endTime)
+                    m_temporaryCollection.Add(wi);
+            }
+
+            m_collection = m_temporaryCollection;
             return this;
         }
 
@@ -45,7 +52,6 @@ namespace WorkReportReminder.DataManagement
         {
             return m_collection.Find(match);
         }
-
 
         #region IEnumerable<WorkItem> Members
 
@@ -83,6 +89,23 @@ namespace WorkReportReminder.DataManagement
         public int Count
         {
             get { return m_collection.Count; }
+        }
+
+        /// <summary>
+        /// Gets last work item from the collection.
+        /// If collection contains zero elements it returns empty work item.
+        /// </summary>
+        public WorkItem LastItem
+        {
+            get
+            {
+                if (m_collection.Count > 0)
+                {
+                    return m_collection[m_collection.Count - 1];
+                }
+
+                else return WorkItem.Empty;
+            }
         }
     }
 }

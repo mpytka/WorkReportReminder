@@ -5,15 +5,15 @@ using System.Text;
 
 namespace WorkReportReminder.DataManagement
 {
-    internal enum XmlElements
+    internal class XmlElements
     {
-        WorkItems,
-        WorkItem,
-        Id,
-        Title,
-        Comment,
-        Time,
-        StartTime,
-        EndTime
+        public static string WorkItems = "WorkItems";
+        public static string WorkItem = "WorkItem";
+        public static string Id = "Id";
+        public static string Title = "Title";
+        public static string Comment = "Comment";
+        public static string Time = "Time";
+        public static string StartTime = "StartTime";
+        public static string EndTime = "EndTime";
     }
 }
