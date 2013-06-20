@@ -46,7 +46,7 @@ namespace WorkReportReminder.DataManagement
             else
             {
                 Log.Instance.Info("Updating existing item");
-                if (workItem.LastComment.Title == singleWorkItemData.Comment)
+                if (workItem.LastComment.CompareTo(singleWorkItemData.Comment) == 0)
                 {
                     workItem.LastComment.SetEndTime(singleWorkItemData.Time);
                 }
