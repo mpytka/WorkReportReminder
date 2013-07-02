@@ -71,9 +71,9 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         private int CompareToWorkItemComment(WorkItemComment instanceToCompare)
         {
-            if (instanceToCompare.Title.CompareTo(Title) == 0 && 
-                instanceToCompare.StartTime == StartTime &&
-                instanceToCompare.EndTime == EndTime)
+            if (Title.CompareTo(instanceToCompare.Title) == 0 &&
+                StartTime.CompareTo(instanceToCompare.StartTime) == 0 &&
+                EndTime.CompareTo(instanceToCompare.EndTime) == 0 )
             {
                 return THE_SAME_VALUE;
             }
@@ -88,7 +88,7 @@ namespace WorkReportReminder.DataManagement
         {
             var valueToCompare = Trim(value);
 
-            if(valueToCompare.CompareTo(valueToCompare) == 0)
+            if(Title.CompareTo(valueToCompare) == 0)
             {
                 return THE_SAME_VALUE;
             }
