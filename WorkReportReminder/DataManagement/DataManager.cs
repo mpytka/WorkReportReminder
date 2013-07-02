@@ -1,26 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
 {
-    public class XmlDataManager : IDataManager
+    public class DataManager : IDataManager
     {
-        private string _writableFilePath = "writableFile.xml";
-        private string _readableFilePath = "writableFile.xml";
+        private readonly string _filePath;
 
-        private XmlDataReader _reader;
-        private XmlDataWriter _writter;
+        private IDataReader _reader;
+        private IDataWriter _writer;
 
-        public XmlDataManager()
+        public DataManager(IDataWriter writer, IDataReader reader, DataManagementConfiguration config)
         {
+            _writer = writer;
+            _reader = reader;
+            _filePath = config.OutputFile;
             Initialise();
         }
 
         private void Initialise()
         {
             _reader = new XmlDataReader();
-            _writter = new XmlDataWriter(_reader);
+            _writer = new XmlDataWriter(_reader);
         }
 
         #region Implementation of IDataManager
@@ -30,7 +31,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         public void Write(WorkItemDto workItemData)
         {
-            _writter.Write(_writableFilePath, workItemData);
+            _writer.Write(_filePath, workItemData);
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         public WorkItem ReadLastItem()
         {
-            return _reader.ReadLastItem(_readableFilePath);
+            return _reader.ReadLastItem(_filePath);
         }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace WorkReportReminder.DataManagement
         /// </summary>
         public WorkItemsList Read(DateTime date)
         {
-            return _reader.ReadAllItems(_readableFilePath, date);
+            return _reader.ReadAllItems(_filePath, date);
         }
 
         /// <summary>

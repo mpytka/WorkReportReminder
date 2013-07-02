@@ -39,7 +39,7 @@ namespace WorkReportReminder.Core
             logger.Configure(true);
             Log.Initialise(logger);
 
-            var config = new ConfigurationManager();
+            var config = new ConfigurationFactory(new ConfigurationParser());
             _applicationInitialiser = new ApplicationInitialiser(config);
 
             Initialise();

@@ -21,9 +21,7 @@ namespace WorkReportReminder.SettingsManagement
         /// <summary>
         /// Gets key value from settnigs xml file.
         /// </summary>
-        /// <param name="keyName"></param>
-        /// <returns></returns>
-        public string GetValue(SettingKey keyName)
+        public string GetValue(SettingKeys keyName)
         {
             string keyValue;
             try
@@ -47,7 +45,6 @@ namespace WorkReportReminder.SettingsManagement
         /// <summary>
         /// Try to open settings xml file.
         /// </summary>
-        /// <returns></returns>
         private XDocument OpenSettingsFile()
         {
             XDocument xmlSettings;

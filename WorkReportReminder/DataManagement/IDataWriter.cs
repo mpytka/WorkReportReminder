@@ -2,7 +2,7 @@
 
 namespace WorkReportReminder.DataManagement
 {
-    interface IDataWriter
+    public interface IDataWriter
     {
         /// <summary>
         /// Add work item data to file.

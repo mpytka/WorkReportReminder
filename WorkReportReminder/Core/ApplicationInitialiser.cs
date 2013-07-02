@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WorkReportReminder.Common;
+﻿using WorkReportReminder.Common;
 using WorkReportReminder.DataManagement;
 using WorkReportReminder.SettingsManagement;
 using WorkReportReminder.TimeManagement;
@@ -33,7 +29,11 @@ namespace WorkReportReminder.Core
         public IDataManager InitialiseDataManager()
         {
             ///some kind of library loader to load plugin dll
-            return new XmlDataManager();
+            //at the moment loading only xml reader/writer.
+            IDataReader reader = new XmlDataReader();
+            IDataWriter writer = new XmlDataWriter(reader);
+            var config = _configurationCreator.DataManagementConfiguration();
+            return new DataManager(writer, reader, config);
         }
 
         /// <summary>

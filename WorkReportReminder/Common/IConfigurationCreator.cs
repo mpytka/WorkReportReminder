@@ -1,10 +1,18 @@
-﻿namespace WorkReportReminder.SettingsManagement
+﻿using WorkReportReminder.DataManagement;
+using WorkReportReminder.TimeManagement;
+
+namespace WorkReportReminder.SettingsManagement
 {
     public interface IConfigurationCreator
     {
         /// <summary>
-        /// Creates configuration obect used to initialise time management service.
+        /// Creates configuration object used to initialise time management service.
         /// </summary>
         TimeGuardConfiguration TimeGuardConfiguration();
+
+        /// <summary>
+        /// Creates configuration object.
+        /// </summary>
+        DataManagementConfiguration DataManagementConfiguration();
     }
 }

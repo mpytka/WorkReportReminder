@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WorkReportReminder.Common;
 
 namespace WorkReportReminder.DataManagement
 {
-    interface IDataReader
+    public interface IDataReader
     {
         /// <summary>
         /// Reads work items data from specified file.

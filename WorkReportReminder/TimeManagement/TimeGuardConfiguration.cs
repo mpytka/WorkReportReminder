@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorkReportReminder.SettingsManagement
+namespace WorkReportReminder.TimeManagement
 {
     /// <summary>
     /// Class used to initialise time manager values.
