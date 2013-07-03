@@ -17,7 +17,8 @@ namespace WorkReportReminder.DataManagement
         public DateTime EndTime { get; private set; }
         public string Title { get; private set; }
 
-        public WorkItemComment(string content, DateTime startTime):this(content, startTime, startTime)
+        public WorkItemComment(string content, DateTime startTime)
+            : this(content, startTime, startTime)
         {
         }
 

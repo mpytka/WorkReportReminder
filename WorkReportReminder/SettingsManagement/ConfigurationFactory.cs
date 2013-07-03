@@ -1,15 +1,10 @@
-﻿using System;
-using System.Configuration;
-using WorkReportReminder.Common;
-using WorkReportReminder.DataManagement;
+﻿using WorkReportReminder.DataManagement;
 using WorkReportReminder.TimeManagement;
 
 namespace WorkReportReminder.SettingsManagement
 {
     public class ConfigurationFactory : IConfigurationCreator
     {
-        
-
         private IConfigurationParser _parser;
 
         public ConfigurationFactory(IConfigurationParser parser)

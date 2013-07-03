@@ -15,13 +15,6 @@ namespace WorkReportReminder.DataManagement
             _writer = writer;
             _reader = reader;
             _filePath = config.OutputFile;
-            Initialise();
-        }
-
-        private void Initialise()
-        {
-            _reader = new XmlDataReader();
-            _writer = new XmlDataWriter(_reader);
         }
 
         #region Implementation of IDataManager

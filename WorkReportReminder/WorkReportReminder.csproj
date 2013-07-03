@@ -168,6 +168,7 @@
     </Compile>
     <None Include="wrr.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

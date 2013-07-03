@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using WorkReportReminder.Common;
 
@@ -35,7 +33,7 @@ namespace WorkReportReminder.DataManagement
 
             if (workItem == null)
             {
-                Log.Instance.Info("Writing new item to file");
+                Log.Instance.Info("Writing new item to the file");
                 var newWorkItem = new WorkItem(singleWorkItemData.Id, singleWorkItemData.Title,
                                                     singleWorkItemData.Time, singleWorkItemData.Comment);
                 allWorkItemsData.Add(newWorkItem);
