@@ -14,6 +14,7 @@ namespace WorkReportReminder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var core = new Core.ApplicationCore();
+            core.Initialise();
             core.Close += OnClose;
             Application.Run(core);
         }

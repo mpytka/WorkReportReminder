@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using WorkReportReminder.Common;
-using WorkReportReminder.DataManagement;
 using WorkReportReminder.SettingsManagement;
-using WorkReportReminder.TimeManagement;
-using WorkReportReminder.UI;
-using WorkReportReminder.UI.Controller;
 
 namespace WorkReportReminder.Core
 {
@@ -14,11 +10,6 @@ namespace WorkReportReminder.Core
     /// </summary>
     public class ApplicationCore : ApplicationContext
     {
-        private UICore _uiCore;
-        private ITimeGuard _timeGuard;
-        private IDataManager _dataManager;
-        private IApplicationBuilder _applicationBuilder;
-
         public event EventHandler Close;
 
         public ApplicationCore()
@@ -27,84 +18,43 @@ namespace WorkReportReminder.Core
             var logger = new Logger();
             logger.Configure(true);
             Log.Initialise(logger);
-
-            var config = new ConfigurationFactory(new ConfigurationParser());
-            _applicationBuilder = new ApplicationBuilder(config);
-
-            Initialise();
         }
 
         /// <summary>
         /// Initialises core services.
         /// </summary>
-        private void Initialise()
+        public void Initialise()
         {
             Log.Instance.Info(string.Format("\r\nAppName: {0} \r\nAppVersion: {1}", ApplicationInfo.Name, ApplicationInfo.Version));
 
-            _dataManager = _applicationBuilder.CreateDataManager();
-            _uiCore = _applicationBuilder.CreateUICore();
-            _timeGuard = _applicationBuilder.CreateTimeGuard();
-            
-            _timeGuard.StartTimer();
+            var config = new ConfigurationFactory(new ConfigurationParser());
+            var builder = new ApplicationBuilder(config);
 
-            HookUpToEvents();
-            FillFormWithInitialData();
+            ///creating core services
+            var dataManager = builder.CreateDataManager();
+            var uiCore = builder.CreateUICore();
+            var timeGuard = builder.CreateTimeGuard();
+            timeGuard.StartTimer();
+
+            var mediator = builder.CreateMediator();
+            mediator.Initialise(uiCore, timeGuard, dataManager);
+            
+            //first we hook up to events.
+            mediator.HookUpToEvents();
+            //next we initialises UI to catch all events.
+            uiCore.Initialise();
+            uiCore.ApplicationCloseRequest += OnCloseRequested;
 
             Log.Instance.Info("Initialisation completed.");
-        }
-
-        /// <summary>
-        /// Hooks up to events.
-        /// </summary>
-        private void HookUpToEvents()
-        {
-            _uiCore.SavePostponeRequested += OnSavePostponeReport;
-            _uiCore.ReportSaveRequest += OnReportSaveRequest;
-            _uiCore.ApplicationCloseRequest += OnCloseRequested;
-            _uiCore.DataRequest += OnDataRequested;
-
-            _timeGuard.TimerRaised += OnTimerRaised;
-        }
-
-        /// <summary>
-        /// Fills layout with data of last entered/used work item.
-        /// </summary>
-        private void FillFormWithInitialData()
-        {
-            var lastUsedWorkItem = _dataManager.ReadLastItem();
-            var workItemDto = new WorkItemDto(lastUsedWorkItem.Id, lastUsedWorkItem.Title, lastUsedWorkItem.LastComment.Title, lastUsedWorkItem.LastComment.EndTime);
-            _uiCore.InitialiseViewData(workItemDto);
-        }
-
-        private void OnDataRequested(object sender, DataRequestEventArgs e)
-        {
-            var workItems = _dataManager.Read(e.FileName);
-            _uiCore.UpdateSummaryData(workItems);
         }
 
         private void OnCloseRequested(object sender, EventArgs e)
         {
             EventHandler temp = Close;
-            if(temp != null)
+            if (temp != null)
             {
                 temp(sender, e);
             }
-        }
-
-        private void OnReportSaveRequest(object sender, SaveReportEventArgs e)
-        {
-            _timeGuard.ResetTimer();
-            _dataManager.Write(e.WorkItemData);
-        }
-
-        private void OnSavePostponeReport(object sender, EventArgs e)
-        {
-            _timeGuard.PostponeTimer();
-        }
-
-        private void OnTimerRaised(object sender, EventArgs eventArgs)
-        {
-            _uiCore.ShowMainForm();
         }
     }
 }

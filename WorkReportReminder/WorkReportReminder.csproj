@@ -73,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ApplicationInfo.cs" />
-    <Compile Include="Common\IApplicationBuilder.cs" />
+    <Compile Include="Core\IApplicationBuilder.cs" />
     <Compile Include="Common\Logger\ILogger.cs" />
     <Compile Include="Common\Logger\Log.cs" />
     <Compile Include="Common\Logger\Logger.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Common\WorkItemDto.cs" />
     <Compile Include="Core\ApplicationCore.cs" />
     <Compile Include="Core\ApplicationBuilder.cs" />
+    <Compile Include="Core\CoreMediator.cs" />
     <Compile Include="DataManagement\DataManagementConfiguration.cs" />
     <Compile Include="DataManagement\WorkItemComment.cs" />
     <Compile Include="Common\IDataManager.cs" />

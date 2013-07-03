@@ -1,12 +1,11 @@
-﻿using WorkReportReminder.Common;
-using WorkReportReminder.DataManagement;
+﻿using WorkReportReminder.DataManagement;
 using WorkReportReminder.SettingsManagement;
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI;
 
 namespace WorkReportReminder.Core
 {
-    public class ApplicationBuilder : IApplicationBuilder
+    internal class ApplicationBuilder : IApplicationBuilder
     {
         private readonly IConfigurationCreator _configurationCreator;
 
@@ -46,6 +45,14 @@ namespace WorkReportReminder.Core
             ITimeGuard timeGuard = new TimeGuard();
             timeGuard.InitialiseTimer(config);
             return timeGuard;
+        }
+
+        /// <summary>
+        /// Creates core mediator user to mediate between UI and other parts of application.
+        /// </summary>
+        public CoreMediator CreateMediator()
+        {
+            return new CoreMediator();
         }
     }
 }

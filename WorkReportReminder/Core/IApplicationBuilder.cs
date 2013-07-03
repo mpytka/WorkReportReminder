@@ -2,9 +2,9 @@
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI;
 
-namespace WorkReportReminder.Common
+namespace WorkReportReminder.Core
 {
-    public interface IApplicationBuilder
+    internal interface IApplicationBuilder
     {
         /// <summary>
         /// Creates ui core service.
@@ -20,5 +20,11 @@ namespace WorkReportReminder.Common
         /// Creates time guard service.
         /// </summary>
         ITimeGuard CreateTimeGuard();
+
+        /// <summary>
+        /// Creates core mediator user to mediate between UI and other parts of application.
+        /// </summary>
+        /// <returns></returns>
+        CoreMediator CreateMediator();
     }
 }

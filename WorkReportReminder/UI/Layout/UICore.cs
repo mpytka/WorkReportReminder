@@ -1,37 +1,25 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UICore.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using System;
 using WorkReportReminder.Common;
 using WorkReportReminder.DataManagement;
 using WorkReportReminder.UI.Controller;
 
 namespace WorkReportReminder.UI
 {
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     public partial class UICore
     {
         private ReportReminderViewController _mainViewController;
         private SettingsViewController _settingsViewController;
         private ReportSummaryController _reportSummary;
 
-        public event EventHandler SavePostponeRequested;
+        public event EventHandler SavePostponeRequest;
         public event EventHandler<SaveReportEventArgs> ReportSaveRequest;
         public event EventHandler<DataRequestEventArgs> DataRequest;
+        public event EventHandler DataUpdateRequest;
         public event EventHandler ApplicationCloseRequest;
 
         public UICore()
         {
             InitialiseComponents();
-            InternalInitialise();
-            HookToMenuActions();
         }
 
         public void ShowMainForm()
@@ -39,14 +27,9 @@ namespace WorkReportReminder.UI
             _mainViewController.Show();
         }
 
-        public void InitialiseViewData(WorkItemDto item)
-        {
-            _mainViewController.FillViewWithWorkItemData(item);
-        }
-
         #region Private
 
-        private void HookToMenuActions()
+        private void HookUpToMenuActions()
         {
             CloseMenuItem.Click += OnCloseMenuItemClick;
             ShowMenuItem.Click += OnShowMenuItemClick;
@@ -54,16 +37,14 @@ namespace WorkReportReminder.UI
             ShowSummaryMenuItem.Click += ShowSummaryMenuItemClick;
         }
 
-        private void InternalInitialise()
+        private void RequestMainFormDataUpdate()
         {
-            _mainViewController = new ReportReminderViewController();
-            _mainViewController.PostponeSaving += OnReportSavePostponed;
-            _mainViewController.Save += OnReportSaveRequested;
+            EventHandler temp = DataUpdateRequest;
+            if (temp != null)
+            {
+                temp(this, EventArgs.Empty);
+            }
 
-            _settingsViewController = new SettingsViewController();
-
-            _reportSummary = new ReportSummaryController();
-            _reportSummary.DataRequested += OnDataRequested;
         }
 
         private void OnDataRequested(object sender, DataRequestEventArgs e)
@@ -75,9 +56,6 @@ namespace WorkReportReminder.UI
             }
         }
 
-        /// <summary>
-        /// Fired when user want to save a report.
-        /// </summary>
         private void OnReportSaveRequested(object sender, SaveReportEventArgs e)
         {
             EventHandler<SaveReportEventArgs> temp = ReportSaveRequest;
@@ -87,12 +65,9 @@ namespace WorkReportReminder.UI
             }
         }
 
-        /// <summary>
-        /// Fired when user postpone report saving.
-        /// </summary>
         private void OnReportSavePostponed(object sender, EventArgs e)
         {
-            EventHandler temp = SavePostponeRequested;
+            EventHandler temp = SavePostponeRequest;
             if(temp != null)
             {
                 temp(sender, e);
@@ -101,9 +76,6 @@ namespace WorkReportReminder.UI
 
         #endregion
 
-        /// <summary>
-        /// Fired when user double click on notification icon.
-        /// </summary>
         private void OnNotificationIconDoubleClick(object sender, EventArgs e)
         {
             ShowMainForm();
@@ -147,9 +119,39 @@ namespace WorkReportReminder.UI
 
         #endregion
 
-        public void UpdateSummaryData(WorkItemsList workItems)
+        /// <summary>
+        /// Initialises ui core.
+        /// </summary>
+        public void Initialise()
+        {
+            _mainViewController = new ReportReminderViewController();
+            _mainViewController.PostponeSaving += OnReportSavePostponed;
+            _mainViewController.Save += OnReportSaveRequested;
+
+            _settingsViewController = new SettingsViewController();
+
+            _reportSummary = new ReportSummaryController();
+            _reportSummary.DataRequested += OnDataRequested;
+
+            RequestMainFormDataUpdate();
+
+            HookUpToMenuActions();
+        }
+
+        /// <summary>
+        /// Updates summary view with list of work items.
+        /// </summary>
+        public void UpdateSummaryView(WorkItemsList workItems)
         {
             _reportSummary.UpdateData(workItems);
+        }
+
+        /// <summary>
+        /// Updates main view (form) with work item data.
+        /// </summary>
+        public void UpdateView(WorkItemDto workItem)
+        {
+            _mainViewController.UpdateWorkItemData(workItem);
         }
     }
 }

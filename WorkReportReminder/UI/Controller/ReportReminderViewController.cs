@@ -22,7 +22,7 @@ namespace WorkReportReminder.UI.Controller
         /// Fills fields with work item's data.
         /// It is usable while application initialisation, to not leave fields empty.
         /// </summary>
-        public void FillViewWithWorkItemData(WorkItemDto item)
+        public void UpdateWorkItemData(WorkItemDto item)
         {
             _view.Fill(item.Id.ToString(), item.Title, item.Comment);
         }
@@ -76,8 +76,7 @@ namespace WorkReportReminder.UI.Controller
                              new WorkItemDto(
                                  int.Parse(workItemId), 
                                  workItemTitle, 
-                                 workItemComment,
-                                 DateTime.Now)));
+                                 workItemComment)));
                 }
 
                 _view.Hide();
