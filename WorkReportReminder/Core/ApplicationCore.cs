@@ -1,11 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ApplicationCore.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
 using WorkReportReminder.Common;
 using WorkReportReminder.DataManagement;
@@ -17,11 +10,7 @@ using WorkReportReminder.UI.Controller;
 namespace WorkReportReminder.Core
 {
     /// <summary>
-    /// TODO: 
-    /// ITimeGuard - BeginShift/EndShift;
-    /// ISettingsManager;
-    /// IDataManager;
-    /// IWorkItemData as DTO instead of string parameters;
+    /// Core of an application.
     /// </summary>
     public class ApplicationCore : ApplicationContext
     {
@@ -34,7 +23,7 @@ namespace WorkReportReminder.Core
 
         public ApplicationCore()
         {
-            ///creates logger service - it have to be the first thing we do
+            ///creates logger service - it has to be the first thing we do
             var logger = new Logger();
             logger.Configure(true);
             Log.Initialise(logger);
