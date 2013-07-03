@@ -6,27 +6,27 @@ using WorkReportReminder.UI;
 
 namespace WorkReportReminder.Core
 {
-    public class ApplicationInitialiser : IApplicationInitialiser
+    public class ApplicationBuilder : IApplicationBuilder
     {
         private readonly IConfigurationCreator _configurationCreator;
 
-        public ApplicationInitialiser(IConfigurationCreator configurationCreator)
+        public ApplicationBuilder(IConfigurationCreator configurationCreator)
         {
             _configurationCreator = configurationCreator;
         }
 
         /// <summary>
-        /// Creates and initialises ui core service.
+        /// Creates ui core service.
         /// </summary>
-        public UICore InitialiseUICore()
+        public UICore CreateUICore()
         {
             return new UICore();
         }
 
         /// <summary>
-        /// Creates and initialises data manager service.
+        /// Creates data manager service.
         /// </summary>
-        public IDataManager InitialiseDataManager()
+        public IDataManager CreateDataManager()
         {
             ///some kind of library loader to load plugin dll
             //at the moment loading only xml reader/writer.
@@ -37,9 +37,9 @@ namespace WorkReportReminder.Core
         }
 
         /// <summary>
-        /// Creates and initialises time guard service.
+        /// Creates time guard service.
         /// </summary>
-        public ITimeGuard InitialiseTimeGuard()
+        public ITimeGuard CreateTimeGuard()
         {
             var config = _configurationCreator.TimeGuardConfiguration();
 

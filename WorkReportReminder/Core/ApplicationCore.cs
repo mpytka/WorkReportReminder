@@ -28,7 +28,7 @@ namespace WorkReportReminder.Core
         private UICore _uiCore;
         private ITimeGuard _timeGuard;
         private IDataManager _dataManager;
-        private IApplicationInitialiser _applicationInitialiser;
+        private IApplicationBuilder _applicationBuilder;
 
         public event EventHandler Close;
 
@@ -40,7 +40,7 @@ namespace WorkReportReminder.Core
             Log.Initialise(logger);
 
             var config = new ConfigurationFactory(new ConfigurationParser());
-            _applicationInitialiser = new ApplicationInitialiser(config);
+            _applicationBuilder = new ApplicationBuilder(config);
 
             Initialise();
         }
@@ -52,9 +52,9 @@ namespace WorkReportReminder.Core
         {
             Log.Instance.Info(string.Format("\r\nAppName: {0} \r\nAppVersion: {1}", ApplicationInfo.Name, ApplicationInfo.Version));
 
-            _dataManager = _applicationInitialiser.InitialiseDataManager();
-            _uiCore = _applicationInitialiser.InitialiseUICore();
-            _timeGuard = _applicationInitialiser.InitialiseTimeGuard();
+            _dataManager = _applicationBuilder.CreateDataManager();
+            _uiCore = _applicationBuilder.CreateUICore();
+            _timeGuard = _applicationBuilder.CreateTimeGuard();
             
             _timeGuard.StartTimer();
 
