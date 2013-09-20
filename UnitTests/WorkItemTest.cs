@@ -7,12 +7,12 @@ namespace UnitTests
     [TestClass]
     public class WorkItemTest
     {
-        private const long m_workItemId = 1;
-        private const string m_workItemTitle = "First task";
-        private const string m_thisOneHasLowPriority = "This one has low priority";
-        private const string m_commentContent0 = "This one has low priority";
-        private const string m_commentContent1 = "Additional comment 1";
-        private const string m_commentContent2 = "Additional comment 2";
+        private const long WORK_ITEM_ID = 1;
+        private const string WORK_ITEM_TITLE = "First task";
+        private const string THIS_ONE_HAS_LOW_PRIORITY = "This one has low priority";
+        private const string COMMENT_CONTENT0 = "This one has low priority";
+        private const string COMMENT_CONTENT1 = "Additional comment 1";
+        private const string COMMENT_CONTENT2 = "Additional comment 2";
 
         private readonly DateTime m_workItemStartTime = new DateTime(2013, 09, 20);
         private readonly DateTime m_commentDate1 = new DateTime(2013, 09, 21);
@@ -25,12 +25,13 @@ namespace UnitTests
             const int EXP_COMMENTS_COUNT = 1;
 
             // act
-            WorkItem workItem = new WorkItem(m_workItemId, m_workItemTitle, m_workItemStartTime, m_thisOneHasLowPriority);
+            WorkItem workItem = 
+                new WorkItem(WORK_ITEM_ID, WORK_ITEM_TITLE, m_workItemStartTime, THIS_ONE_HAS_LOW_PRIORITY);
 
             // assert
             Assert.IsNotNull(workItem);
-            Assert.AreEqual(m_workItemId, workItem.Id);
-            Assert.AreEqual(m_workItemTitle, workItem.Title);
+            Assert.AreEqual(WORK_ITEM_ID, workItem.Id);
+            Assert.AreEqual(WORK_ITEM_TITLE, workItem.Title);
             Assert.AreEqual(EXP_COMMENTS_COUNT, workItem.Comments.Count);
         }
 
@@ -38,11 +39,12 @@ namespace UnitTests
         public void ShouldAddTwoMoreComments()
         {
             // arrange
-            WorkItem workItem = new WorkItem(m_workItemId, m_workItemTitle, m_workItemStartTime, m_commentContent0);
+            WorkItem workItem = 
+                new WorkItem(WORK_ITEM_ID, WORK_ITEM_TITLE, m_workItemStartTime, COMMENT_CONTENT0);
 
             // act
-            workItem.AddComment(m_commentContent1, m_commentDate1);
-            workItem.AddComment(m_commentContent2, m_commentDate2);
+            workItem.AddComment(COMMENT_CONTENT1, m_commentDate1);
+            workItem.AddComment(COMMENT_CONTENT2, m_commentDate2);
 
             // assert
             Assert.AreEqual(3, workItem.Comments.Count);
@@ -52,30 +54,32 @@ namespace UnitTests
         public void ShouldReturnLastCommentAdded()
         {
             // arrange
-            WorkItem workItem = new WorkItem(m_workItemId, m_workItemTitle, m_workItemStartTime, m_commentContent0);
-            workItem.AddComment(m_commentContent1, m_commentDate1);
-            workItem.AddComment(m_commentContent2, m_commentDate2);
+            WorkItem workItem = 
+                new WorkItem(WORK_ITEM_ID, WORK_ITEM_TITLE, m_workItemStartTime, COMMENT_CONTENT0);
+            workItem.AddComment(COMMENT_CONTENT1, m_commentDate1);
+            workItem.AddComment(COMMENT_CONTENT2, m_commentDate2);
 
             // act
             WorkItemComment workItemComment = workItem.LastComment;
 
             // assert
-            Assert.AreEqual(m_commentContent2, workItemComment.Title);
+            Assert.AreEqual(COMMENT_CONTENT2, workItemComment.Title);
         }
 
         [TestMethod]
         public void ShouldReturnFirstCommentAdded()
         {
             // arrange
-            WorkItem workItem = new WorkItem(m_workItemId, m_workItemTitle, m_workItemStartTime, m_commentContent0);
-            workItem.AddComment(m_commentContent1, m_commentDate1);
-            workItem.AddComment(m_commentContent2, m_commentDate2);
+            WorkItem workItem = 
+                new WorkItem(WORK_ITEM_ID, WORK_ITEM_TITLE, m_workItemStartTime, COMMENT_CONTENT0);
+            workItem.AddComment(COMMENT_CONTENT1, m_commentDate1);
+            workItem.AddComment(COMMENT_CONTENT2, m_commentDate2);
 
             // act
             WorkItemComment workItemComment = workItem.FirstComment;
 
             // assert
-            Assert.AreEqual(m_commentContent0, workItemComment.Title);
+            Assert.AreEqual(COMMENT_CONTENT0, workItemComment.Title);
         }
     }
 }
