@@ -89,7 +89,7 @@ namespace WorkReportReminder.DataManagement
         {
             var valueToCompare = Trim(value);
 
-            if(Title.CompareTo(valueToCompare) == 0)
+            if (Title.CompareTo(valueToCompare) == 0)
             {
                 return THE_SAME_VALUE;
             }

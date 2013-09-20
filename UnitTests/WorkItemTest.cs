@@ -10,9 +10,9 @@ namespace UnitTests
         private const long WORK_ITEM_ID = 1;
         private const string WORK_ITEM_TITLE = "First task";
         private const string THIS_ONE_HAS_LOW_PRIORITY = "This one has low priority";
-        private const string COMMENT_CONTENT0 = "This one has low priority";
-        private const string COMMENT_CONTENT1 = "Additional comment 1";
-        private const string COMMENT_CONTENT2 = "Additional comment 2";
+        private const string COMMENT_CONTENT0 = "Random content 0";
+        private const string COMMENT_CONTENT1 = "Random content 1";
+        private const string COMMENT_CONTENT2 = "Random content 2";
 
         private readonly DateTime m_workItemStartTime = new DateTime(2013, 09, 20);
         private readonly DateTime m_commentDate1 = new DateTime(2013, 09, 21);
