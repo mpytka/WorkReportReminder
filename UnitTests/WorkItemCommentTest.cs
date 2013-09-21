@@ -70,14 +70,28 @@ namespace UnitTests
         public void ShouldReturnZeroWhenComparingTitleToWorkItemComment()
         {
             // arrange
-            WorkItemComment workItemComment0 = new WorkItemComment(COMMENT_CONTENT0, m_commentDateTime0);
             const string EXPECTED_TITLE = COMMENT_CONTENT0;
+            WorkItemComment workItemComment0 = new WorkItemComment(COMMENT_CONTENT0, m_commentDateTime0);
 
             // act
             int result = workItemComment0.CompareTo(EXPECTED_TITLE);
 
             // assert
             Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void ShouldReturnOneWhenComparingTitleToWorkItemComment()
+        {
+            // arrange
+            const string EXPECTED_TITLE = COMMENT_CONTENT0;
+            WorkItemComment workItemComment1 = new WorkItemComment(COMMENT_CONTENT1, m_commentDateTime1);
+
+            // act
+            int result = workItemComment1.CompareTo(EXPECTED_TITLE);
+
+            // assert
+            Assert.AreEqual(1, result);
         }
     }
 }
