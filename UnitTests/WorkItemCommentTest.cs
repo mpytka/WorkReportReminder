@@ -65,5 +65,19 @@ namespace UnitTests
             // assert
             Assert.AreEqual(1, result);
         }
+
+        [TestMethod]
+        public void ShouldReturnZeroWhenComparingTitleToWorkItemComment()
+        {
+            // arrange
+            WorkItemComment workItemComment0 = new WorkItemComment(COMMENT_CONTENT0, m_commentDateTime0);
+            const string EXPECTED_TITLE = COMMENT_CONTENT0;
+
+            // act
+            int result = workItemComment0.CompareTo(EXPECTED_TITLE);
+
+            // assert
+            Assert.AreEqual(0, result);
+        }
     }
 }
