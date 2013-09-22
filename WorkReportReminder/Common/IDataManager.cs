@@ -1,7 +1,7 @@
 ﻿using System;
-using WorkReportReminder.Common;
+using WorkReportReminder.DataManagement;
 
-namespace WorkReportReminder.DataManagement
+namespace WorkReportReminder.Common
 {
     public interface IDataManager
     {

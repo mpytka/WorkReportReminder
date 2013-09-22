@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using WorkReportReminder.Common;
+using WorkReportReminder.Common.Logger;
 using WorkReportReminder.SettingsManagement;
 
 namespace WorkReportReminder.Core

@@ -1,8 +1,9 @@
 ﻿using System.Windows.Forms;
+using WorkReportReminder.UI.Common;
 using WorkReportReminder.UI.Controller;
 using WorkReportReminder.UI.View.SummaryHelpers;
 
-namespace WorkReportReminder.UI
+namespace WorkReportReminder.UI.View
 {
     public partial class ReportSummary : Form, IReportSummaryView
     {

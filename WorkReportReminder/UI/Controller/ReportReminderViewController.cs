@@ -1,5 +1,7 @@
 ﻿using System;
 using WorkReportReminder.Common;
+using WorkReportReminder.UI.Common;
+using WorkReportReminder.UI.View;
 
 namespace WorkReportReminder.UI.Controller
 {

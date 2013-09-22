@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using WorkReportReminder.UI;
+using WorkReportReminder.UI.Common;
 using WorkReportReminder.UI.Controller;
 
-
-namespace WorkReportReminder
+namespace WorkReportReminder.UI.View
 {
     public partial class ReportReminderForm : Form, IReportReminderView
     {

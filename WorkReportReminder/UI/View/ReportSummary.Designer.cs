@@ -1,4 +1,4 @@
-﻿namespace WorkReportReminder.UI
+﻿namespace WorkReportReminder.UI.View
 {
     partial class ReportSummary
     {

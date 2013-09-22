@@ -1,4 +1,4 @@
-namespace WorkReportReminder.UI
+namespace WorkReportReminder.UI.Common
 {
     internal interface IReportSummaryView
     {

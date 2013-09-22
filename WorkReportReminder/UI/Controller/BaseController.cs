@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace WorkReportReminder
+namespace WorkReportReminder.UI.Controller
 {
     /// <summary>
     /// TODO: Update summary.

@@ -3,7 +3,7 @@ using WorkReportReminder.Common;
 using WorkReportReminder.DataManagement;
 using WorkReportReminder.UI.Controller;
 
-namespace WorkReportReminder.UI
+namespace WorkReportReminder.UI.Layout
 {
     public partial class UICore
     {

@@ -1,7 +1,9 @@
-﻿using WorkReportReminder.DataManagement;
+﻿using WorkReportReminder.Common;
+using WorkReportReminder.DataManagement;
+using WorkReportReminder.DataManagement.XmlData;
 using WorkReportReminder.SettingsManagement;
 using WorkReportReminder.TimeManagement;
-using WorkReportReminder.UI;
+using WorkReportReminder.UI.Layout;
 
 namespace WorkReportReminder.Core
 {

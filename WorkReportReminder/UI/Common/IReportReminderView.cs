@@ -1,5 +1,5 @@
 ﻿
-namespace WorkReportReminder.UI
+namespace WorkReportReminder.UI.Common
 {
     public interface IReportReminderView
     {

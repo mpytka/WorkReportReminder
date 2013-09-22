@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorkReportReminder.Common
+namespace WorkReportReminder.Common.Logger
 {
     public static class Log
     {

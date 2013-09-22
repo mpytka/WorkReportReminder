@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Threading;
+using WorkReportReminder.Common;
 
 namespace WorkReportReminder.TimeManagement
 {

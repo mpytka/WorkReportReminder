@@ -1,6 +1,7 @@
 ﻿using System;
+using WorkReportReminder.TimeManagement;
 
-namespace WorkReportReminder.TimeManagement
+namespace WorkReportReminder.Common
 {
     public interface ITimeGuard
     {

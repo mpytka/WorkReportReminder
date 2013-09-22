@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorkReportReminder.SettingsManagement
+namespace WorkReportReminder.Common
 {
     public class SettingsDto 
     {

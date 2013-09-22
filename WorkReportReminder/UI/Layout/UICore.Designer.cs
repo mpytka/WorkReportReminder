@@ -3,9 +3,10 @@
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
+
 using WorkReportReminder.Properties;
 
-namespace WorkReportReminder.UI
+namespace WorkReportReminder.UI.Layout
 {
     /// <summary>
     /// TODO: Update summary.

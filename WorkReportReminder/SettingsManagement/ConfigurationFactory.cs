@@ -1,4 +1,5 @@
-﻿using WorkReportReminder.DataManagement;
+﻿using WorkReportReminder.Common;
+using WorkReportReminder.DataManagement;
 using WorkReportReminder.TimeManagement;
 
 namespace WorkReportReminder.SettingsManagement

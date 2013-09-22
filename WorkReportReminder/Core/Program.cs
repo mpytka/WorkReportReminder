@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace WorkReportReminder
+namespace WorkReportReminder.Core
 {
     static class Program
     {

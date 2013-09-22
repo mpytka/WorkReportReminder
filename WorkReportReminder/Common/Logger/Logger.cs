@@ -3,7 +3,7 @@ using System.IO;
 using log4net;
 using log4net.Config;
 
-namespace WorkReportReminder.Common
+namespace WorkReportReminder.Common.Logger
 {
     internal class Logger : ILogger
     {

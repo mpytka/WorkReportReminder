@@ -1,5 +1,5 @@
 ﻿
-namespace WorkReportReminder.Common
+namespace WorkReportReminder.Common.Logger
 {
     public interface ILogger
     {

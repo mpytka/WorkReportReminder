@@ -1,6 +1,6 @@
 using System;
 
-namespace WorkReportReminder.UI.Controller
+namespace WorkReportReminder.Common
 {
     public class DataRequestEventArgs : EventArgs
     {

@@ -1,7 +1,7 @@
 ﻿using WorkReportReminder.DataManagement;
 using WorkReportReminder.TimeManagement;
 
-namespace WorkReportReminder.SettingsManagement
+namespace WorkReportReminder.Common
 {
     public interface IConfigurationCreator
     {
