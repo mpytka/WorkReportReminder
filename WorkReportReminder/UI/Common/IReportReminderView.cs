@@ -21,7 +21,8 @@ namespace WorkReportReminder.UI.Common
         /// <summary>
         /// Displays error message.
         /// </summary>
-        /// <param name="error"></param>
+        /// <param name="errorTitle"></param>
+        /// <param name="errorMsg"></param>
         void DisplayErrorMsg(string errorTitle, string errorMsg);
 
         /// <summary>

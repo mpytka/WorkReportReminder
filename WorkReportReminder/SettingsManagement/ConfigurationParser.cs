@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using WorkReportReminder.Common;
 using WorkReportReminder.Common.Logger;
 
 namespace WorkReportReminder.SettingsManagement

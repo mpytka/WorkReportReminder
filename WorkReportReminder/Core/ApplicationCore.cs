@@ -15,7 +15,7 @@ namespace WorkReportReminder.Core
 
         public ApplicationCore()
         {
-            ///creates logger service - it has to be the first thing we do
+            // creates logger service - it has to be the first thing we do
             var logger = new Logger();
             logger.Configure(true);
             Log.Initialise(logger);
@@ -31,7 +31,7 @@ namespace WorkReportReminder.Core
             var config = new ConfigurationFactory(new ConfigurationParser());
             var builder = new ApplicationBuilder(config);
 
-            ///creating core services
+            // creating core services
             var dataManager = builder.CreateDataManager();
             var uiCore = builder.CreateUICore();
             var timeGuard = builder.CreateTimeGuard();

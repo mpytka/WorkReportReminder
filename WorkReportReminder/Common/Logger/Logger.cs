@@ -9,7 +9,7 @@ namespace WorkReportReminder.Common.Logger
     {
         private const int DETAILED_INFO_LEVEL = 3;
         private const string DEFAULT_FILE_NAME = "Lib/log4net.config";
-        private ILog m_logger;
+        private readonly ILog m_logger;
         private bool m_isDetailedInfoEnabled;
 
         public Logger()
@@ -61,8 +61,8 @@ namespace WorkReportReminder.Common.Logger
         /// </summary>
         private string FormatOutputDataWithCallStack(string message)
         {
-            string CALL_STACK = "Call Stack:";
-            char NEW_LINE = '\n';
+            const string CALL_STACK = "Call Stack:";
+            const char NEW_LINE = '\n';
 
             var st = new StackTrace(DETAILED_INFO_LEVEL, false);
             var callStack = st.GetFrames();

@@ -1,8 +1,5 @@
 ﻿using System;
 using WorkReportReminder.Common;
-using WorkReportReminder.DataManagement;
-using WorkReportReminder.TimeManagement;
-using WorkReportReminder.UI.Controller;
 using WorkReportReminder.UI.Layout;
 
 namespace WorkReportReminder.Core

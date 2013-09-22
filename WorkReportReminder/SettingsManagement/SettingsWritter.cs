@@ -24,7 +24,7 @@ namespace WorkReportReminder.SettingsManagement
                 new XElement("Settings",
                              from key in Enum.GetNames(typeof (SettingKeys))
                              select new XElement(
-                                 key.ToString(), string.Empty
+                                 key, string.Empty
                                  )
                     )
                 );

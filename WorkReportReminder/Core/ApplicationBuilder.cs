@@ -1,7 +1,6 @@
 ﻿using WorkReportReminder.Common;
 using WorkReportReminder.DataManagement;
 using WorkReportReminder.DataManagement.XmlData;
-using WorkReportReminder.SettingsManagement;
 using WorkReportReminder.TimeManagement;
 using WorkReportReminder.UI.Layout;
 
@@ -29,8 +28,8 @@ namespace WorkReportReminder.Core
         /// </summary>
         public IDataManager CreateDataManager()
         {
-            ///some kind of library loader to load plugin dll
-            //at the moment loading only xml reader/writer.
+            // some kind of library loader to load plugin dll
+            // at the moment loading only xml reader/writer.
             IDataReader reader = new XmlDataReader();
             IDataWriter writer = new XmlDataWriter(reader);
             var config = _configurationCreator.DataManagementConfiguration();
