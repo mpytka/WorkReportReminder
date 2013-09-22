@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace WorkReportReminder.UI
 {
     public interface IReportReminderView

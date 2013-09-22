@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using WorkReportReminder.DataManagement;
-
-namespace WorkReportReminder.UI
+﻿namespace WorkReportReminder.UI
 {
     partial class ReportSummary
     {

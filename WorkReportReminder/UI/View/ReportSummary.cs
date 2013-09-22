@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Windows.Forms;
-using WorkReportReminder.DataManagement;
+﻿using System.Windows.Forms;
 using WorkReportReminder.UI.Controller;
-using System.Collections.Generic;
 using WorkReportReminder.UI.View.SummaryHelpers;
 
 namespace WorkReportReminder.UI

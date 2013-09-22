@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-using WorkReportReminder.UI;
+﻿using System.Text.RegularExpressions;
 using WorkReportReminder.DataManagement;
 
 namespace WorkReportReminder.UI.View.SummaryHelpers
