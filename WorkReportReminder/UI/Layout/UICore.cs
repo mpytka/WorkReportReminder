@@ -96,6 +96,8 @@ namespace WorkReportReminder.UI
         /// </summary>
         private void OnCloseMenuItemClick(object sender, EventArgs e)
         {
+            NotificationIcon.Visible = false;
+
             EventHandler temp = ApplicationCloseRequest;
             if(temp != null)
             {
