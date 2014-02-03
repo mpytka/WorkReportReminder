@@ -127,7 +127,7 @@ namespace UnitTests
             Assert.AreEqual(null, result.Comments);
         }
         [TestMethod]
-        public void ShouldReturnTwoCountedElements() // count method
+        public void ShouldReturnTwoCountedElements()
         {
             //arrange
             const int EXP_COUNT = 2;
