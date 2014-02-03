@@ -143,7 +143,7 @@ namespace UnitTests
             Assert.AreEqual(EXP_COUNT, itemsList.Count);
         }
         [TestMethod]
-        public void ShouldReturnLastElement() //LastWorkItem, Two items added
+        public void ShouldReturnLastElement() 
         {
             //arrange
             WorkItem item = new WorkItem(1, "title", null);
