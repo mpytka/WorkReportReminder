@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConfigurationParserTests.cs" />
+    <Compile Include="DataManagerTests.cs" />
     <Compile Include="WorkItemsListTests.cs" />
     <Compile Include="WorkItemCommentTest.cs" />
     <Compile Include="WorkItemTest.cs" />
@@ -64,6 +65,9 @@
       <Project>{04eb538f-064f-46b9-baff-699fc5123d1c}</Project>
       <Name>WorkReportReminder</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataFiles\output1.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

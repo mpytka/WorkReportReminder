@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkItems>
+  <WorkItem>
+    <Id>1</Id>
+    <Title>Test1</Title>
+    <Comment StartTime="2014-02-05T08:44:33.7594268+01:00" EndTime="2014-02-05T08:44:33.7594268+01:00">TestComment1</Comment>
+  </WorkItem>
+  <WorkItem>
+    <Id>2</Id>
+    <Title>Test2</Title>
+    <Comment StartTime="2014-02-05T08:45:22.3991948+01:00" EndTime="2014-02-05T08:45:22.3991948+01:00">TestComment2</Comment>
+  </WorkItem>
+  <WorkItem>
+    <Id>3</Id>
+    <Title>Test3</Title>
+    <Comment StartTime="2014-02-05T08:46:25.63335+01:00" EndTime="2014-02-05T08:46:25.63335+01:00">TestComment3</Comment>
+  </WorkItem>
+</WorkItems>
